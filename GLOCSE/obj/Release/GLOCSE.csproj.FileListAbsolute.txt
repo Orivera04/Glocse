@@ -1,0 +1,121 @@
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\ApplicationInsights.config
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\GLOCSE.dll.config
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\GLOCSE.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\GLOCSE.pdb
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Antlr3.Runtime.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.Web.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Newtonsoft.Json.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Helpers.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Mvc.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Optimization.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Razor.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.Deployment.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.Razor.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\WebGrease.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Helpers.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Mvc.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Optimization.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Razor.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.Deployment.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.WebPages.Razor.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Antlr3.Runtime.pdb
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Newtonsoft.Json.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\Microsoft.AI.Web.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Mvc.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Optimization.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Razor.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.Deployment.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.Razor.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\obj\Release\GLOCSE.csproj.CoreCompileInputs.cache
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\obj\Release\GLOCSE.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\obj\Release\GLOCSE.pdb
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\obj\Release\GLOCSE.csprojResolveAssemblyReference.cache
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Net.Http.Formatting.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Http.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Http.WebHost.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Net.Http.Formatting.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Http.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\System.Web.Http.WebHost.xml
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Net.Http.Formatting.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Http.resources.dll
+C:\Users\Oscar\Documents\Visual Studio 2017\Projects\GLOCSE\GLOCSE\bin\es\System.Web.Http.WebHost.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\ApplicationInsights.config
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\GLOCSE.dll.config
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\GLOCSE.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\GLOCSE.pdb
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Antlr3.Runtime.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.Agent.Intercept.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.DependencyCollector.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.Web.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.WindowsServer.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.ApplicationInsights.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.Web.Infrastructure.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Newtonsoft.Json.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Net.Http.Formatting.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Helpers.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Http.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Http.WebHost.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Mvc.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Optimization.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Razor.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.Deployment.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.Razor.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\WebGrease.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Net.Http.Formatting.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Http.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Http.WebHost.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Helpers.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Mvc.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Optimization.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.Razor.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.Deployment.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\System.Web.WebPages.Razor.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Antlr3.Runtime.pdb
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Newtonsoft.Json.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.ApplicationInsights.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.DependencyCollector.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.WindowsServer.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\Microsoft.AI.Web.xml
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Net.Http.Formatting.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Http.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Http.WebHost.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Helpers.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Mvc.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Optimization.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.Razor.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\bin\es\System.Web.WebPages.Razor.resources.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.dll
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.pdb
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.csprojResolveAssemblyReference.cache
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.csproj.CoreCompileInputs.cache
+D:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.csproj.CopyComplete
+E:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.csprojAssemblyReference.cache
+E:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.csproj.CoreCompileInputs.cache
+E:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.dll
+E:\UNI\2017\Proyecto\GLOCSE\GLOCSE\obj\Release\GLOCSE.pdb
