@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="GLOCSE" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\Oscar\\Documents\\Visual\ Studio\ 2017\\Projects\\GLOCSE\\GLOCSE\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Users\\Oscar\\Documents\\Visual\ Studio\ 2017\\Projects\\GLOCSE\\GLOCSE\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+</parameters>

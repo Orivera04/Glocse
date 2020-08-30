@@ -1,0 +1,1249 @@
+﻿@{
+    ViewBag.Title = "GLOCSE - Subestaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="text-center">
+                <a href="index.html" class="logo"><i class="icon-magnet icon-c-logo"></i><span>GL<i class="md md-album"></i>CSE</span></a>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="">
+                    <div class="pull-left">
+                        <button class="button-menu-mobile open-left waves-effect waves-light">
+                            <i class="md md-menu"></i>
+                        </button>
+                        <span class="clearfix"></span>
+                    </div>
+
+                    <ul class="nav navbar-nav hidden-xs">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown"
+                               role="button" aria-haspopup="true" aria-expanded="false">
+                                Opciones<span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li id="LimitarMapa"><a href="#"><image src='https://k61.kn3.net/C/0/A/6/6/3/879.png' class="thumb-sm"></image>Limitar Mapa</a></li>
+                                <li id="DeslimitarMapa"><a href="#"><image src='https://k61.kn3.net/0/7/5/9/A/4/E20.png' class="thumb-sm"></image>Quitar Limitación</a></li>
+                                <li id="Procesar"><a href="#"><image src='https://k61.kn3.net/D/5/0/7/3/D/641.png' class="thumb-sm"></image>Procesar Elipse</a></li>
+
+                                <li id="GuardarEspacioTrabajo"><a href="#"><image src='https://k61.kn3.net/9/5/C/8/4/4/80C.png' class="thumb-sm"></image>Guardar Espacios de trabajo</a></li>
+
+                                <li id="graficamontaña"><a href="#"><image src='https://k61.kn3.net/D/9/8/3/6/4/E05.png' class="thumb-sm"></image>Superficie Normal</a></li>
+
+                                <li id="graficaconsumidores"><a href="#"><image src='https://k60.kn3.net/0/7/F/5/7/7/265.png' class="thumb-sm"></image>Generar Graficas de consumidores</a></li>
+
+                                <!--     *************************************************     ID PARA PIN DE PRUEBA  ****************************************************************************************************-->
+                                <li id="PinDePrueba"><a href="#"><image src='https://k61.kn3.net/1/A/0/5/4/3/DFB.png' class="thumb-sm"></image>Pin de prueba</a></li>
+                                <li><a href="#"><image src='https://k61.kn3.net/8/2/2/4/9/C/A35.png' class="thumb-sm"></image>Guadar proyecto</a></li>
+                                <!--     *************************************************     ID PARA GEOLOCALIZACION ****************************************************************************************************-->
+                                <li id="Geolocalizacion"><a href="#"><image src='https://k61.kn3.net/2/7/2/C/9/8/8EA.png' class="thumb-sm"></image>Geolocalización</a></li>
+                                <li><a href="#"><image src='https://k61.kn3.net/D/0/1/4/F/1/8B0.png' class="thumb-sm"></image>Marcador en mi ubicación actual</a></li>
+                                <li id="Reiniciar"><a href="#"><image src='https://k61.kn3.net/2/B/F/5/B/4/B74.png' class="thumb-sm"></image>Reiniciar</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                    <form class="navbar-left app-search pull-left hidden-xs">
+                        <input id="BusquedaLugar" type="text" placeholder="Lugar / Coordenada" class="form-control">
+                        <a href=""><i class="fa fa-search"></i></a>
+                    </form>
+
+
+                    <ul class="nav navbar-nav navbar-right pull-right">
+                        <li class="hidden-xs">
+                            <a href="#" id="btn-Geolocalization" class="waves-effect waves-light"><i class="./assets/images/map"></i></a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="#" id="btn-fullscreen" class="waves-effect waves-light"><i class="icon-size-fullscreen"></i></a>
+                        </li>
+                        <li class="hidden-xs">
+                            <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="icon-settings"></i></a>
+                        </li>
+                        <li class="dropdown top-menu-item-xs">
+                            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="https://ih0.redbubble.net/image.120558680.3136/flat,800x800,075,f.u3.jpg" alt="user-img" class="img-circle"> </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Configuración</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i>Cerrar Sesión</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="left side-menu">
+        <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                <ul>
+
+                    <li class="text-muted menu-title">Opciones del sistema</li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" class="waves-effect"><i class=" icon-map"></i> <span> Mapa </span> <span class="menu-arrow"></span></a>
+                        <ul>
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" id="sb_googlemaps" class="waves-effect"><i class=" icon-location-pin"></i> <span> Google Maps </span></a>
+
+                            </li>
+
+
+                            <!--                                     <li class="has_sub">
+                                                                 <a href="javascript:void(0);" id="sb_plano" class="waves-effect"><i class=" icon-layers"></i> <span> Planos </span></a>
+                                                                 </li> -->
+                        </ul>
+                    </li>
+
+
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" id="sb_graficas" class="waves-effect"><i class=" icon-graph"></i><span> Graficas </span></a>
+                    </li>
+
+                    <li class="has_sub">
+                        <a href="javascript:void(0);" id="sb_reportes" class="waves-effect"><i class=" icon-notebook"></i><span> Reportes </span></a>
+                    </li>
+
+
+                    <li class="has_sub">
+                        <a id="sb_proyecciones" href="javascript:void(0);" class="waves-effect"><i class=" icon-layers"></i><span id="Proyecciones"> Proyecciones</span></a>
+                    </li>
+
+                    <li class="has_sub">
+                        <a id="sb_configuracion" href="javascript:void(0);" class="waves-effect"><i class=" icon-settings"></i><span> Configuración</span></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="content-page">
+
+        <div class="content">
+            <div class="container">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="btn-group pull-right m-t-15">
+                            <button id="botonactiva" type="button" class="btn btn-default dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Proyección 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span></button>
+                            <ul class="dropdown-menu drop-menu-right" role="menu">
+                                <li id="VerProyeccion1"><a href="#">Proyección 1</a></li>
+                                <li id="VerProyeccion2"><a href="#">Proyección 2</a></li>
+                                <li id="VerProyeccion3"><a href="#">Proyección 3</a></li>
+                            </ul>
+                        </div>
+
+                        <h4 class="page-title">Proyecto</h4>
+                        <p class="text-muted page-title-alt">Subestación Electrica de Nandaime</p>
+                    </div>
+                </div>
+
+
+                <div id="containermapa">
+                    <div class="row" id="Rowmapa">
+                        <div id="Mapa"></div>
+                        <div id="ContenedorEmergente">
+
+                            <div class="container" id="rowcabezera">
+                                <div class="row">
+                                    <div class="row">
+                                        <div class="col-xs-12"><h3 id="ctitulo" class="textocontenedor">Consumidor A</h3></div>
+                                        <i id="guardarcontenedor" class=" icon-pin" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3 class="textoinfo">Latitud</h3>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input id="clatitud" type="text" class="textboxcontenedor">
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3 class="textoinfo">Longitud</h3>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input id="clongitud" type="text" class="textboxcontenedor">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <h3 class="textoinfo">Coordenada</h3>
+                                </div>
+                                <div class="col-xs-6">
+                                    <input id="ccoordenadas" type="text" class="textboxcontenedor">
+                                </div>
+                            </div>
+
+
+                            <div class="row" id="rowcategoria">
+                                <div class="col-xs-6">
+                                    <h3 class="textoinfo">Categoria</h3>
+                                </div>
+                                <div class="col-xs-6" id="colcheckbox">
+
+
+                                    <div class="CheckboxContenedor" data-role="none">
+
+                                        <label data-role="none">
+                                            <input data-role="none" type="radio" class="CheckBoxVerde" id="Cat1CentroEventual" checked="" name="Categoria"> 1
+                                        </label>
+
+                                        <label data-role="none">
+                                            <input data-role="none" type="radio" class="CheckBoxVerde" id="Cat2CentroEventual" name="Categoria">2
+                                        </label>
+
+                                        <label data-role="none">
+                                            <input data-role="none" type="radio" class="CheckBoxVerde" id="Cat3CentroEventual" name="Categoria">3
+                                        </label>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="row" id="rowtabla">
+                                <div class="col-xs-16">
+                                    <div class="table-responsive">
+                                        <table id="tablapotencias" contenteditable="true" class="table table-bordered m-0">
+                                            <thead>
+                                                <tr>
+
+                                                    <th>1</th>
+                                                    <th>2</th>
+                                                    <th>3</th>
+                                                    <th>4</th>
+                                                    <th>5</th>
+                                                    <th>6</th>
+                                                    <th>7</th>
+                                                    <th>8</th>
+                                                    <th>9</th>
+                                                    <th>10</th>
+                                                    <th>11</th>
+                                                    <th>12</th>
+                                                    <th>13</th>
+                                                    <th>14</th>
+                                                    <th>15</th>
+                                                    <th>16</th>
+                                                    <th>17</th>
+                                                    <th>18</th>
+                                                    <th>19</th>
+                                                    <th>20</th>
+                                                    <th>21</th>
+                                                    <th>22</th>
+                                                    <th>23</th>
+                                                    <th>24</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+                                                    <td>?</td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="row" id="canvasfiguras">
+                        <div class="col-lg-16">
+                            <div class="card-box" id="contenedorpoligonos">
+                                <h4 class="text-dark header-title m-t-0">Figuras Geometricas</h4>
+                                <div id="thumbs">
+                                    <img src="https://k61.kn3.net/F/9/B/C/F/6/CDB.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k60.kn3.net/D/4/5/4/4/5/491.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k60.kn3.net/D/C/7/8/7/1/244.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k61.kn3.net/0/B/F/C/0/D/1D7.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k60.kn3.net/D/C/7/8/7/1/244.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k60.kn3.net/C/9/A/8/E/F/D71.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k61.kn3.net/8/9/4/D/2/F/2C9.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k60.kn3.net/5/C/E/3/2/2/536.png" alt="" width="50" height="50" /></a>
+                                    <img src="https://k61.kn3.net/1/1/3/0/7/B/6A1.png" alt="" width="50" height="50" /></a>
+                                    <span class="stretch"></span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="Rowmontaña" style="display:none;">
+                        <div class="col-lg-16">
+
+                            <div class="card-box">
+                                <h4 class="text-dark header-title m-t-0">Proyección 3D de la elipse (P1) </h4>
+                                <div id="montaña1" style="height: 303px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" id="Rowmontaña2" style="display:none;">
+                        <div class="col-lg-16">
+
+                            <div class="card-box">
+                                <h4 class="text-dark header-title m-t-0">Proyección 3D de la elipse (P2) </h4>
+                                <div id="montaña2" style="height: 303px;"></div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row" id="Rowmontaña3" style="display:none;">
+                        <div class="col-lg-16">
+
+                            <div class="card-box">
+                                <h4 class="text-dark header-title m-t-0">Proyección 3D de la elipse (P3) </h4>
+                                <div id="montaña3" style="height: 303px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="nav nav-pills navtab-bg nav-justified tabs_mapa" style="display:none;">
+                        <li class="nav-item active">
+                            <a id="MapaTab" href="#RowMapa" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                Mapa
+                            </a>
+                        </li>
+                        <li id="Mt1" class="nav-item">
+                            <a href="#Rowmontaña" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                Superficie Normal 1
+                            </a>
+                        </li>
+                        <li id="Mt2" class="nav-item">
+                            <a href="#Rowmontaña2" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                Superficie Normal 2
+                            </a>
+                        </li>
+                        <li id="Mt3" class="nav-item">
+                            <a href="#Rowmontaña3" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                Superficie Normal 3
+                            </a>
+                        </li>
+                    </ul>
+                </div>                                        
+                    <div id="containergraficas">
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor A
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet1"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet1" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <canvas id="GraficaA" style="height: 320px;" class="flot-chart"></canvas>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor B
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet2"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet2" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <canvas id="GraficaB" style="height: 320px;" class="flot-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor C
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet3" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="donut-chart">
+                                                <canvas id="GraficaC" class="flot-chart" style="height: 320px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor D
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet4"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet4" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="pie-chart">
+                                                <canvas id="GraficaD" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor E
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet3" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="donut-chart">
+                                                <canvas id="GraficaE" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor F
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet4"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet4" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="pie-chart">
+                                                <canvas id="GraficaF" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor G
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet3" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="donut-chart">
+                                                <canvas id="GraficaG" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor H
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet4"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet4" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="pie-chart">
+                                                <canvas id="GraficaH" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor I
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet3"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet3" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="donut-chart">
+                                                <canvas id="GraficaI" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Consumidor J
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet4"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet4" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <div id="pie-chart">
+                                                <canvas id="GraficaJ" style="height: 320px;" class="flot-chart"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                            <div class="col-lg-12">
+                                <div class="portlet">
+                                    <div class="portlet-heading">
+                                        <h3 class="portlet-title text-dark">
+                                            Potencia Total
+                                        </h3>
+                                        <div class="portlet-widgets">
+                                            <a href="javascript:;" data-toggle="reload"><i class="ion-refresh"></i></a>
+                                            <span class="divider"></span>
+                                            <a data-toggle="collapse" data-parent="#accordion1" href="#portlet7"><i class="ion-minus-round"></i></a>
+                                            <span class="divider"></span>
+                                            <a href="#" data-toggle="remove"><i class="ion-close-round"></i></a>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <div id="portlet7" class="panel-collapse collapse in">
+                                        <div class="portlet-body">
+                                            <canvas id="myChartTOTAL" style="height: 320px;" class="flot-chart"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label class="col-md-4 control-label" for="singlebutton"></label>
+                            <div class="col-md-4 center-block">
+                                <button id="reporte" name="singlebutton" class="btn btn-danger center-block">
+                                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                                    Generar reporte
+                                </button>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div id="containerreportes">
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="widget-panel widget-style-2 bg-white">
+                                    <i class=" md-account-child" id="icousuario"></i>
+                                    <h2 id="cargasproyeccion" class="m-0 text-dark counter font-600">2 / 10</h2>
+                                    <div class="text-muted m-t-5">Cargas</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="widget-panel widget-style-2 bg-white">
+                                    <i class=" md-gps-fixed" id="icocentroseventuales"></i>
+                                    <h2 id="centrosproyeccion" class="m-0 text-dark counter font-600">1 / 24</h2>
+                                    <div class="text-muted m-t-5">Eventuales</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="widget-panel widget-style-2 bg-white">
+                                    <i class=" md-panorama-horizontal" id="icoancho"></i>
+                                    <h2 id="Radiox" class="m-0 text-dark counter font-600">18</h2>
+                                    <div class="text-muted m-t-5">Radio X</div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="widget-panel widget-style-2 bg-white">
+                                    <i class=" md-panorama-vertical" id="icolargo"></i>
+                                    <h2 id="Radioy" class="m-0 text-dark counter font-600">8564</h2>
+                                    <div class="text-muted m-t-5">Radio Y</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-sm-12" id="paddingfaltante">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title"><b>Tabla de cargas</b></h4>
+                                    <p class="text-muted m-b-30 font-13">
+                                        Listado de todas las cargas presentes en la proyección y sus caracteristicas
+                                    </p>
+
+                                    <table id="demo-foo-filtering" class="table table-striped toggle-circle m-b-0" data-page-size="6">
+                                        <thead>
+                                            <tr>
+                                                <th data-toggle="true">Carga</th>
+                                                <th>Categoria</th>
+                                                <th data-hide="phone">Cx</th>
+                                                <th data-hide="phone, tablet">Cy</th>
+                                                <th data-hide="phone, tablet">Latitud</th>
+                                                <th data-hide="phone, tablet">Longitud</th>
+                                                <th data-hide="phone, tablet">Mapa</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="cuerpotablaconsumidores"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-box">
+                                        <h4 class="m-t-0 header-title"><b>Tabla de centro eventuales</b></h4>
+                                        <p class="text-muted m-b-30 font-13">
+                                            Listado de todas los 24 centros eventuales presentes en el mapa con sus caracteristicas.
+                                        </p>
+
+                                        <table id="demo-foo-addrow" class="table table-striped toggle-circle m-b-0" data-page-size="6">
+                                            <thead>
+                                                <tr>
+                                                    <th data-toggle="true">Centro Eventual</th>
+                                                    <th data-hide="phone">Cx</th>
+                                                    <th data-hide="phone, tablet">Cy</th>
+                                                    <th data-hide="phone, tablet">Latitud</th>
+                                                    <th data-hide="phone, tablet">Longitud</th>
+                                                    <th data-hide="phone, tablet">Mapa</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="cuerpotablacentroseventuales"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Tabla Potencia -->
+
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="card-box">
+                                        <h4 class="m-t-0 header-title"><b>Tabla de potencias</b></h4>
+                                        <p class="text-muted m-b-30 font-13" id="textomargen">
+                                            Datos de las potencias por consumidor incluyendo el valor , la sumatoria total de potencias ,el valor minimo , medio y maximo por consumidor.
+                                        </p>
+
+                                        <table id="tablaconsumidores" class="table table-striped toggle-circle m-b-0" data-page-size="14">
+                                            <thead>
+                                                <tr>
+                                                    <th data-toggle="true">Hora</th>
+                                                    <th data-hide="phone">A</th>
+                                                    <th data-hide="phone, tablet">B</th>
+                                                    <th data-hide="phone, tablet">C</th>
+                                                    <th data-hide="phone, tablet">D</th>
+                                                    <th data-hide="phone, tablet">E</th>
+                                                    <th data-hide="phone, tablet">F</th>
+                                                    <th data-hide="phone, tablet">G</th>
+                                                    <th data-hide="phone, tablet">H</th>
+                                                    <th data-hide="phone, tablet">I</th>
+                                                    <th data-hide="phone, tablet">J</th>
+                                                    <th data-hide="phone, tablet">Sumatoria</th>
+                                                    <th data-hide="phone, tablet">Minimo</th>
+                                                    <th data-hide="phone, tablet">Media</th>
+                                                    <th data-hide="phone, tablet">Maximo</th>
+                                                </tr>
+                                            </thead>
+                                    </div>
+                                    <tbody id="tablapotenicas24"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title"><b>Variables del procedimiento</b></h4>
+                                    <p class="text-muted m-b-30 font-13">
+                                        Valor de las variables que se utilizaron para calcular el centro de la
+                                        elipse para la proyección actual.
+                                    </p>
+
+                                    <span id="VDx" ">Dx</span>
+                                    <br>
+                                    <span id="VDy" ">Dy</span>
+                                    <br>
+                                    <span id="VSigmax" ">SigmaX</span>
+                                    <br>
+                                    <span id="VSigmay" ">SigmaY</span>
+                                    <br>
+                                    <span id="VHx" ">Hx</span>
+                                    <br>
+                                    <span id="VHy" ">Hy</span>
+                                    <br>
+                                    <span id="VAx" ">Ax</span>
+                                    <br>
+                                    <span id="VAy" ">Ay</span>
+                                    <br>
+                                    <span id="VCxy" ">Cxy</span>
+                                    <br>
+                                    <span id="Vr" ">r</span>
+                                    <br>
+                                    <span id="VAngulo" ">Alfa</span>
+                                    <br>
+                                    <span id="VFhiSigma" ">FhiSigma</span>
+                                    <br>
+                                    <span id="VPhiSigma" ">PhiSigma</span>
+                                    <br>
+                                    <span id="VFhiExactitud" ">FhiExactitud</span>
+                                    <br>
+                                    <span id="VPhiExactitud" ">PhiExactitud</span>
+                                    <br>
+                                    <span id="VFhiRadio" ">FhiRadio</span>
+                                    <br>
+                                    <span id="VPhiRadio" ">PhiRadio</span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6">
+                                <div class="card-box">
+                                    <h4 class="m-t-0 header-title"><b>Variables de la proyección</b></h4>
+                                    <p class="text-muted m-b-30 font-13">
+                                        Variables usadas en el mapa para el calculo de ciertos componentes de la elipse
+                                        de la proyección que esta activa en este momento.
+                                    </p>
+
+                                    <h3 class="informacion" id="CMapaLatitud">Centro del mapa (Latitud) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CMapaLongitud">Centro del mapa (Longitud) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CMapaCentroX">Centro del mapa (Cx) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CMapaCentroY">Centro del mapa (Cy) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CElipseLatitud">Centro Elipse (Latitud) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CElipseLongitud">Centro Elipse (Longitud) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CElipseX">Centro Elipse (Cx) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CElipseY">Centro Elipse (Cy) : ?</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CElipseArea">Area Elipse  : ? </h3>
+                                    <br>
+                                    <h3 class="informacion" id="CGuia">Tipo de guia : Google Maps</h3>
+                                    <br>
+                                    <h3 class="informacion" id="CEscala">Escala en X : ? </h3>
+                                    <br>
+                                    <h3 class="informacion" id="CEscalaY">Escala en Y : ? </h3>
+                                    <br>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div id="containerproyecciones">
+
+                    <div class="row">
+                        <div class="col-sm-12" id="col">
+                            <div class="card-box widget-inline">
+                                <div class="row">
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="widget-inline-box text-center">
+                                            <h3><i id="icoproyeccion1" class="text-pink md md-account-child"></i> <b id="Proyeccion1"> 0 / 10</b></h3>
+                                            <h4 class="text-muted">Proyección 1 Consumidores</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="widget-inline-box text-center">
+                                            <h3><i id="icoproyeccion2" class="text-pink md md-account-child"></i><b id="Proyeccion2"> 0 / 10 </b></h3>
+                                            <h4 class="text-muted">Proyección 2 Consumidores</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="widget-inline-box text-center">
+                                            <h3><i id="icoproyeccion3" class="text-pink md md-account-child"></i><b id="Proyeccion3">  0 / 10</b></h3>
+                                            <h4 class="text-muted">Proyección 3 Consumidores</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-sm-6">
+                                        <div class="widget-inline-box text-center b-0">
+                                            <h3><i id="icoproyeccion4" class="text-pink md md-account-child"></i><b id="TotalCEC"> 0 / 30 </b></h3>
+                                            <h4 class="text-muted">Proyección Final</h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-6" id="paddingfaltante">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Espacios de trabajo de la proyección actual</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    Aqui podras restaurar un espacio de trabajo que hayas guardado previamente del mapa o del plano.
+                                </p>
+
+                                <table id="tablaespaciostrabajo" class="table table-striped toggle-circle m-b-0" data-page-size="2">
+                                    <thead>
+                                        <tr>
+                                            <th data-toggle="true">Identificador</th>
+                                            <th data-hide="phone">Restaurar</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="cuerpoEspacioTrabajo"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-6" id="paddingfaltante">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Marcador de prueba de ubicación de la subestación electrica</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    Información del marcador de pruba puesto por el usuario esta información incluye si el pin esta ubicado en un lugar adecuado para la creación de la misma.
+                                </p>
+
+                                <!-------------------------------------------------------AÑADIENDO ID(S) PARA LA ASIGNACION DE VALORES---------------------------------------------------->
+                                <h3 id="LatitudMP" class="informacion">Latitud : ?</h3>
+                                <br>
+                                <h3 id="LongitudMP" class="informacion">Longitud : ?</h3>
+                                <br>
+                                <h3 id="XMP" class="informacion">X : ?</h3>
+                                <br>
+                                <h3 id="YMP" class="informacion">Y : ?</h3>
+                                <br>
+                                <h3 id="IntersectaP1MP" class="informacion">Intersecta con Elipse P1 : ?</h3>
+                                <br>
+                                <h3 id="IntersectaP2MP" class="informacion">Intersecta con Elipse P2 : ?</h3>
+                                <br>
+                                <h3 id="IntersectaP3MP" class="informacion">Intersecta con Elipse P3 : ?</h3>
+                                <br>
+                                <h3 id="OptimaMP" class="informacion">Esta en zona optima : ?</h3>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Datos de las elipses</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    Información completa de las elipses formadas por todas las proyecciones hechas por el usuario
+                                </p>
+
+                                <!-------------------------------------------------------AÑADIENDO ID(S) PARA LA ASIGNACION DE VALORES---------------------------------------------------->
+                                <h3 id="PCentroP1" class="informacion">Elipse Centro P1 : ?</h3>
+                                <br>
+                                <h3 id="PCentroP2" class="informacion">Elipse Centro P2 : ?</h3>
+                                <br>
+                                <h3 id="PCentroP3" class="informacion">Elipse Centro P3 : ?</h3>
+                                <br>
+                                <h3 id="PInterseccionP1P2" class="informacion">Intercepta Elipse P1 y P2: ?</h3>
+                                <br>
+                                <h3 id="PInterseccionP1P3" class="informacion">Intercepta Elipse P1 y P3: ?</h3>
+                                <br>
+                                <h3 id="PInterseccionP2P3" class="informacion">Intercepta Elipse P2 y P3 ?</h3>
+                                <br>
+                                <h3 id="PAreaP1" class="informacion">Elipse P1 Area : ?</h3>
+                                <br>
+                                <h3 id="PAreaP2" class="informacion">Elipse P2 Area : ?</h3>
+                                <br>
+                                <h3 id="PAreaP3" class="informacion">Elipse P3 Area : ?</h3>
+                                <br>
+                                <h3 id="PCentroOptimo" class="informacion">Zona optima : ?</h3>
+                                <br>
+                            </div>
+                        </div>
+
+                    </div> <!-- container -->
+
+                </div>
+
+                <div id="containerconfiguracion">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Configuración de los marcadores y leyendas</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    Visibilidad de los marcadores y de leyenda del mapa
+                                </p>
+
+                                <label data-role="none" class="labelconfiguracion">
+                                    <input id="potenciasaleatorias" data-role="none" type="checkbox" class="CheckBoxVerde" id="potenciasaleatorias" checked name="Categoria">Potencias aleatorias
+                                </label>
+                                <label data-role="none" class="labelconfiguracion">
+                                    <input data-role="none" checked type="checkbox" class="CheckBoxVerde" id="Cat2CentroEventual" name="Categoria">Ver pin de prueba
+                                </label>
+
+
+                                <label data-role="none" class="labelconfiguracion">
+                                    <input data-role="none" checked type="checkbox" class="CheckBoxVerde" id="Cat2CentroEventual" name="Categoria">Ver pin de ubicación
+                                </label>
+
+
+                                <label data-role="none" class="labelconfiguracion">
+                                    <input data-role="none" checked type="checkbox" class="CheckBoxVerde" id="Cat2CentroEventual" name="Categoria">Ver leyenda
+                                </label>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col-sm-4">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Opacidad y detalle</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    configuración de detalle y de opacidad de los poligonos
+                                </p>
+                                <div class="form-group">
+                                    <div class="range-slider">
+                                        <span>Poligono intervalo<input id="range_01" type="text" class="js-range-slider" value="" /></span>
+                                    </div>
+                                    <div class="range-slider">
+                                        <span>Opacidad Borde<input id="range_02" type="text" class="js-range-slider" value="" /></span>
+                                    </div>
+
+
+                                    <div class="range-slider">
+                                        <span>Opacidad Relleno<input id="range_03" type="text" class="js-range-slider" value="" /></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-4">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Colores</b></h4>
+                                <p class="text-muted m-b-30 font-13">
+                                    Aqui podras configurar los colores de las elipses
+                                </p>
+
+                                <div class="form-group">
+                                    <label>Elipse 1</label>
+                                    <input id="cpicker1" type="text" class="colorpicker-default form-control" value="#8fff00">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Elipse 2</label>
+                                    <input id="cpicker2" type="text" class="colorpicker-default form-control" value="#8fff00">
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Elipse 3</label>
+                                    <input id="cpicker3" type="text" class="colorpicker-default form-control" value="#8fff00">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div> <!-- content -->
+            <!--
+    <footer class="footer text-right">
+        © 2017. Sistema Geolocalizador De Subestaciones Electricas.
+    </footer-->            
+        </div>
+
+
+    <!-- ============================================================== -->
+    <!-- End Right content here -->
+    <!-- ============================================================== -->
+    <!-- Right Sidebar -->
+    <div class="side-bar right-bar nicescroll">
+        <div class="contact-list nicescroll">
+            <h4 class="text-center">Mapa / Plano</h4>
+            <ul class="list-group contacts-list">
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Consumidores</span>
+                        <div id="switchconsumidores" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+
+                        <span class="name">Tiempo Real</span>
+                        <div id="switchtiemporeal" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+
+                <li class="list-group-item">
+                    <a href="#">
+
+                        <span class="name">Proyección Global</span>
+                        <div id="switchglobal" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <h4 id="sidebartexto" class="text-center">Proyección Actual</h4>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Cargas</span>
+                        <div id="switchcarga" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">CentrosEventuales</span>
+                        <div id="switchcentroseventuales" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Elipses</span>
+                        <div id="switchelipse" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <h4 class="text-center">Proyección Global</h4>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Solo Cargas</span>
+                        <div id="switchcargaglobal" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Solo CE</span>
+                        <div id="switchceglobal" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Solo Elipse</span>
+                        <div id="switchelipseglobal" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Ver Todo</span>
+                        <div id="switchtodo" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+                <li class="list-group-item">
+                    <a href="#">
+                        <span class="name">Ocultar Todo</span>
+                        <div id="switchocultartodo" class="switch">
+                            <div class="handle"></div>
+                        </div>
+                    </a>
+                    <span class="clearfix"></span>
+                </li>
+
+            </ul>
+
+        </div>
+    </div>
+    <!-- /Right-bar -->
+
+</div>
+<!-- END wrapper -->
