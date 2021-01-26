@@ -80,23 +80,10 @@ $( document ).ready(function()
 {
   	
   	/* Eventos del menu lateral */
-
-            /* Opcion Mapa */        	
-
-
-/*        	$( "#sb_plano" ).click(function() 
-        	{
-        	      MostrarOcultarContenedor('containermapa');
-                Activo = "containermapa";
-                document.getElementById('canvasfiguras').style.display = 'block'
-            }); 
-*/
-
             $( "#sb_googlemaps" ).click(function() 
             {
                 MostrarOcultarContenedor('containermapa');
                 Activo = "containermapa";
-/*                document.getElementById('canvasfiguras').style.display = 'none';        */
             }); 
 
 
@@ -112,12 +99,12 @@ $( document ).ready(function()
           	{
                 if(Rectangulo != null)
                 {                  
-            	 	   ActualizarTabla();
+            	   ActualizarTabla();
                    ActualizarTablaCentrosEventuales();
                    ActualizarInformacionProyeccionActual()
                    ActualizarTablaPotencias();
                    MostrarOcultarContenedor('containerreportes');
-            	 	   Activo = "containerreportes";
+            	   Activo = "containerreportes";
                    document.getElementById('cargasproyeccion').innerHTML = Proyecciones[ProyeccionActiva].MarcadoresCollecion.length + " / 10";
                    document.getElementById('centrosproyeccion').innerHTML = Proyecciones[ProyeccionActiva].CentrosEventuales.length + " / 24";
                    document.getElementById('Radiox').innerHTML = Math.trunc(Proyecciones[ProyeccionActiva].FhiRadio);
@@ -255,6 +242,7 @@ $( document ).ready(function()
                 {
                      $.Notification.autoHideNotify('warning', 'top right', 'El mapa ya ha sido limitado previamente');                     
                 }
+                $("html, body").animate({ scrollTop: $("#myID").scrollTop() }, 1000);
             });
 
 
@@ -866,10 +854,8 @@ $( document ).ready(function()
         $('#Rowmontaña').hide();
         $('#Rowmontaña3').show();
     });
+    $("body").scrollTop(10000);
 });
-
-
-
 
 
 function MostrarOcultarContenedor(Contenedor)

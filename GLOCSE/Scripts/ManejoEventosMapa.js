@@ -169,13 +169,7 @@ function DelimitarBordes(Parametro)
         BordesRectanguloMarcador.extend(PNW1);
         BordesRectanguloMarcador.extend(PNE1);
         BordesRectanguloMarcador.extend(PSW1);
-        BordesRectanguloMarcador.extend(PSE1);
-        /*
-        $("#VerProyeccion1").prop('disabled', false);
-        $("#VerProyeccion2").prop('disabled', false);
-        $("#VerProyeccion1").prop('checked', true);*/
-
-        //Rectangulo.addListener('rightclick', function (e) { $("#ContenedorEmergente").hide(300); AñadirMarcadorMapa(e.latLng, MapaCanvas) });
+        BordesRectanguloMarcador.extend(PSE1);      
     }
     else {
         if (Rectangulo != null) 
@@ -237,8 +231,8 @@ function RestaurarEspaciosDeTrabajo(ID)
             else { document.getElementById("Cat3CentroEventual").checked = true; }
             OperacionesTabla(5, Proyecciones[IndiceProyeccion].MarcadoresCollecion[BuscarIndice(Proyecciones[IndiceProyeccion].MarcadoresCollecion, Instancia.Marcador.tittle, 2, false)].Horas);
             ContenedorTipo = "Marcador";            
-            document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-event.pixel.x)+"px";
-            document.getElementById('ContenedorEmergente').style.top = event.pixel.y+"px";
+            document.getElementById('ContenedorEmergente').style.top = "0px";
+            document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";
             $("#ContenedorEmergente").show(1000);
         });
 
@@ -366,8 +360,8 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
             else { document.getElementById("Cat3CentroEventual").checked = true; }
             OperacionesTabla(5, Proyecciones[IndiceProyeccion].MarcadoresCollecion[BuscarIndice(Proyecciones[IndiceProyeccion].MarcadoresCollecion, Marcador.tittle, 2, false)].Horas);
             ContenedorTipo = "Marcador";            
-            document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-event.pixel.x)+"px";
-            document.getElementById('ContenedorEmergente').style.top = event.pixel.y+"px";
+            document.getElementById('ContenedorEmergente').style.top= "0px";
+            document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";
             $("#ContenedorEmergente").show(1000);
 
         });
