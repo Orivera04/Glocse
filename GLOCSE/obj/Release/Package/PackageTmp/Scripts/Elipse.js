@@ -90,8 +90,8 @@ function CentrosEventualesDeCarga(Parametro, ProyeccionActual) {
                 document.getElementById('guardarcontenedor').style.display = 'none';
                 var Punto = Valor.MarcadorCentroEventual.position;
                 var Coordenada = RetornarCordenada(Punto,1);                
-                document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-Coordenada.x)+"px";
-                document.getElementById('ContenedorEmergente').style.top = Coordenada.y+"px";                
+                document.getElementById('ContenedorEmergente').style.top = "0px";
+                document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";               
                 document.getElementById("ctitulo").innerHTML = 'Centro Eventual H' + Valor.MarcadorCentroEventual.tittle;
                 document.getElementById("clatitud").value = (Valor.MarcadorCentroEventual.position.lat()).toString();
                 document.getElementById("clongitud").value = (Valor.MarcadorCentroEventual.position.lng()).toString();                
@@ -131,8 +131,8 @@ function CentrosEventualesDeCarga(Parametro, ProyeccionActual) {
                 document.getElementById('guardarcontenedor').style.display = 'none';
                 var Punto = PinCentro.getPosition();
                 var Coordenada = RetornarCordenada(Punto,1);                
-                document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-Coordenada.x)+"px";
-                document.getElementById('ContenedorEmergente').style.top = Coordenada.y+"px";                
+                document.getElementById('ContenedorEmergente').style.top = "0px";
+                document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";                
                 document.getElementById("ctitulo").innerHTML = PinCentro.tittle;
                 document.getElementById("clatitud").value = (PinCentro.getPosition().lat()).toString();
                 document.getElementById("clongitud").value = (PinCentro.getPosition().lng()).toString();                
@@ -258,7 +258,7 @@ function Dibujo_Elipse(ProyeccionActual, Parametro) {
         PuntosCoordenadas[I] = Coordenadas_Cartesianas_APunto({ x: Proyecciones[ProyeccionActual].Puntos_X[I], y: Math.abs(Proyecciones[ProyeccionActual].Puntos_Y[I]) });
     }
     var Color;
-    (ProyeccionActual == 0) ? Color = '#FF0000' : ((ProyeccionActual == 1) ? Color = '#23CE6B' : Color = '#7D2AB5')
+    (ProyeccionActual == 0) ? Color = $('#cpicker1').val() : ((ProyeccionActual == 1) ? Color = $('#cpicker2').val() : Color = $('#cpicker3').val())
 
     PuntosCoordenadas.pop();
     PuntosCoordenadas.pop();
@@ -338,8 +338,8 @@ function DetectarInterseccion(Parametro) {
                 document.getElementById('guardarcontenedor').style.display = 'none';
                 var Punto = CentroInterseccion.getPosition();
                 var Coordenada = RetornarCordenada(Punto,1);                
-                document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-Coordenada.x)+"px";
-                document.getElementById('ContenedorEmergente').style.top = Coordenada.y+"px";                
+                document.getElementById('ContenedorEmergente').style.top = "0px";
+                document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";
                 document.getElementById("ctitulo").innerHTML = CentroInterseccion.tittle;
                 document.getElementById("clatitud").value = (CentroInterseccion.getPosition().lat()).toString();
                 document.getElementById("clongitud").value = (CentroInterseccion.getPosition().lng()).toString();                
@@ -378,8 +378,8 @@ function DetectarInterseccion(Parametro) {
                 document.getElementById('guardarcontenedor').style.display = 'none';
                 var Punto = CentroInterseccion.getPosition();
                 var Coordenada = RetornarCordenada(Punto,1);                
-                document.getElementById('ContenedorEmergente').style.left  = Math.abs(($('#ContenedorEmergente').width()/2)-Coordenada.x)+"px";
-                document.getElementById('ContenedorEmergente').style.top = Coordenada.y+"px";                
+                    document.getElementById('ContenedorEmergente').style.top = "0px";
+                    document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";                
                 document.getElementById("ctitulo").innerHTML = CentroInterseccion.tittle;
                 document.getElementById("clatitud").value = (CentroInterseccion.getPosition().lat()).toString();
                 document.getElementById("clongitud").value = (CentroInterseccion.getPosition().lng()).toString();                

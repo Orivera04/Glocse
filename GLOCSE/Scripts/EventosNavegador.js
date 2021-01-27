@@ -270,7 +270,8 @@ $( document ).ready(function()
             {
                                 
                   GuardarEspacioDeTrabajo(0);                                       
-                  $.Notification.autoHideNotify('success', 'top right', 'Se ha guardado el espacio de trabajo');                
+                  $.Notification.autoHideNotify('success', 'top right', 'Se ha guardado el espacio de trabajo');   
+                  ActualizarTablaEspaciosDeTrabajo();
             });
 
 
@@ -544,7 +545,8 @@ $( document ).ready(function()
                             
                             document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                             document.getElementById("sidebartexto").innerHTML = "Proyección 1";
-                                       
+                            ActualizarTablaEspaciosDeTrabajo();
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 1 se encuentra activa');                                       
 
                 });
 
@@ -581,7 +583,10 @@ $( document ).ready(function()
                               else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
                             }          
                             CopiarProyeccionPrevia(0);
-                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';                            
+                            document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 2 se encuentra activa');   
+                            ActualizarTablaEspaciosDeTrabajo();
+
                 });
 
 
@@ -644,7 +649,10 @@ $( document ).ready(function()
                                if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
-                            }                            
+                        }                            
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 3 se encuentra activa');           
+                            ActualizarTablaEspaciosDeTrabajo();
+
                 });
 
 
@@ -813,6 +821,17 @@ $( document ).ready(function()
              $('#cpicker3').colorpicker();             
              ImprimirVariables(0);                          
 
+            $('#range_01').change(function(event){
+                OpcionesGlobales[0].Paso = parseFloat($('#range_01').val()) / 100;
+            });
+
+            $('#range_02').change(function (event){
+                OpcionesGlobales[0].OpacidadBorde = parseFloat($('#range_02').val()) / 100;
+            });
+
+            $('#range_03').change(function (event){
+                OpcionesGlobales[0].OpacidadRelleno = parseFloat($('#range_03').val()) / 100;
+            });
 
             $(window).resize(function () {
                 var body = document.body, html = document.documentElement;
@@ -854,6 +873,9 @@ $( document ).ready(function()
         $('#Rowmontaña').hide();
         $('#Rowmontaña3').show();
     });
+    $('#cpicker1').val("#FF0000");
+    $('#cpicker2').val("#23CE6B");
+    $('#cpicker3').val("#7D2AB5");
     $("body").scrollTop(10000);
 });
 
