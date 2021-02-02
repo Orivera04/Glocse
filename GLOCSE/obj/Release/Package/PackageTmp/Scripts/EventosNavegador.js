@@ -584,6 +584,7 @@ $( document ).ready(function()
                             }          
                             CopiarProyeccionPrevia(0);
                             document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
+                            document.getElementById("sidebartexto").innerHTML = "Proyección 2";
                             $.Notification.autoHideNotify('success', 'top right', 'La Proyección 2 se encuentra activa');   
                             ActualizarTablaEspaciosDeTrabajo();
 
@@ -877,8 +878,33 @@ $( document ).ready(function()
     $('#cpicker2').val("#23CE6B");
     $('#cpicker3').val("#7D2AB5");
     $("body").scrollTop(10000);
+
+    $('#invocar_carga').click(function (event) {
+        $('#carga_masiva').click();
+    });
+
+    $("#carga_masiva").change(function () {
+        var fileUpload = $("#carga_masiva")[0];
+        var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+        if (regex.test(fileUpload.value.toLowerCase())) {
+            var reader = new FileReader();
+            if (reader.readAsBinaryString) {
+                reader.onload = function (e) {
+                    ProcessExcel(e.target.result);
+                };
+                reader.readAsArrayBuffer(fileUpload.files[0]);
+            }
+        } else {
+            swal("Error", "Por favor sube un archivo excel valido.", "error");
+        }
+    });
 });
 
+
+function ProcessExcel(data) {
+    workbook = XLSX.read(data, { type: 'binary' });
+
+}
 
 function MostrarOcultarContenedor(Contenedor)
 {

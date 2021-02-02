@@ -1341,7 +1341,7 @@ function DevolverURLMarcador(Consumidor) {
             URLImagen = "https://k61.kn3.net/2/B/F/C/F/F/973.png";
             break;
         case "F3":
-            URLImagen = "https://k61.kn3.net/2/B/F/C/F/F/973.png";
+            URLImagen = "https://i.imgur.com/rLo5Ptw.png";
             break;
         case "G3":
             URLImagen = "https://k60.kn3.net/E/3/9/B/C/8/5E2.png";
