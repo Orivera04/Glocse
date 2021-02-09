@@ -891,6 +891,7 @@ $( document ).ready(function()
             if (reader.readAsBinaryString) {
                 reader.onload = function (e) {
                     ProcessExcel(e.target.result);
+                    $("#carga_masiva").val("");
                 };
                 reader.readAsArrayBuffer(fileUpload.files[0]);
             }
@@ -903,6 +904,30 @@ $( document ).ready(function()
 
 function ProcessExcel(data) {
     workbook = XLSX.read(data, { type: 'binary' });
+
+    if (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length == 10) {
+        // Categorias
+        var marcadores = "ABCDEFGHIJ".split("");
+        $.each(marcadores, function (indice, marcador) {
+            Proyecciones[ProyeccionActiva].MarcadoresCollecion[indice].Horas = []
+            categoria = workbook.Sheets.Plantilla[marcador + "8"].v.toString() || 1;
+            Proyecciones[ProyeccionActiva].MarcadoresCollecion[indice].Categoria = categoria;
+        });
+
+        var excel_letras = "BCDEFGHIJKLMNOPQRSTUVWXY".split("");
+        for (var I = 12; I <= 21; I++) {
+            $.each(excel_letras, function (indice, marcador) {
+                carga = workbook.Sheets.Plantilla[marcador + I.toString()].v.toString() || 0
+                Proyecciones[ProyeccionActiva].MarcadoresCollecion[I - 12].Horas.push(carga);
+            });
+
+        }
+        swal("Aviso", "La carga masiva se realizo exitosamente.", "success");        
+    }
+    else {
+        swal("Error", "Ubica todos los consumidores en el mapa.", "error");
+    }
+    
 
 }
 
