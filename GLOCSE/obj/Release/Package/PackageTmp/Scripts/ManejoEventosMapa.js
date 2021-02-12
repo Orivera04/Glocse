@@ -6,7 +6,7 @@ var JSONBBDD;
 var Rectangulo = null;
 /*Sección de funciones que son de inicialización y manejo del mapa
 		/* Metodo que inicializa el mapa con todos los eventos */
-function GenerarMapa() 
+function GenerarMapa()
 {
     MapaCanvas = new google.maps.Map(document.getElementById('Mapa'),
         {
@@ -23,32 +23,32 @@ function GenerarMapa()
 
 
 
-    MapaCanvas.addListener('bounds_changed', function () 
+    MapaCanvas.addListener('bounds_changed', function ()
     {
         CajaDeBusqueda.setBounds(MapaCanvas.getBounds());
     });
 
     var MarcadoresBusqueda = [];
-    CajaDeBusqueda.addListener('places_changed', function () 
+    CajaDeBusqueda.addListener('places_changed', function ()
     {
-        if (Rectangulo == null) 
+        if (Rectangulo == null)
         {
             var Lugares = CajaDeBusqueda.getPlaces();
-            if (Lugares.length == 0) 
+            if (Lugares.length == 0)
             {
                     $.Notification.autoHideNotify('warning', 'top right', 'No se encontro ningun lugar.')                                              ;
             }
-            else 
+            else
             {
                 var BordeMapa = new google.maps.LatLngBounds();
-                Lugares.forEach(function (place) 
+                Lugares.forEach(function (place)
                 {
                     var Icono = { url: place.icon, size: new google.maps.Size(71, 71), origin: new google.maps.Point(0, 0), anchor: new google.maps.Point(17, 34), EscaladSize: new google.maps.Size(25, 25) };
-                    if (place.geometry.viewport) 
+                    if (place.geometry.viewport)
                     {
                         BordeMapa.union(place.geometry.viewport);
                     }
-                    else 
+                    else
                     {
                         BordeMapa.extend(place.geometry.location);
                     }
@@ -76,15 +76,15 @@ function GenerarMapa()
                 MapaCanvas.setZoom(15);
             }
         }
-        else 
+        else
         {
-            $.Notification.autoHideNotify('warning', 'top right', 'Quite los limites primero.')                                                        
+            $.Notification.autoHideNotify('warning', 'top right', 'Quite los limites primero.')
         }
     });
 
 
 
-    google.maps.event.addListener(MapaCanvas, 'center_changed', function () 
+    google.maps.event.addListener(MapaCanvas, 'center_changed', function ()
     {
         if (Rectangulo != null) {
 
@@ -99,16 +99,16 @@ function GenerarMapa()
 
 
 
-    ZoomEscucha = google.maps.event.addListener(MapaCanvas, 'zoom_changed', function (event) 
+    ZoomEscucha = google.maps.event.addListener(MapaCanvas, 'zoom_changed', function (event)
     {
-        if (MapaCanvas.getZoom() >= ZoomMinimo) 
+        if (MapaCanvas.getZoom() >= ZoomMinimo)
         {
-            ZoomBordes = google.maps.event.addListenerOnce(MapaCanvas, 'bounds_changed', function (event) 
+            ZoomBordes = google.maps.event.addListenerOnce(MapaCanvas, 'bounds_changed', function (event)
             {
-                if (Rectangulo != null) 
+                if (Rectangulo != null)
                 {
                     if (CondicionZoom == false)
-                        if ((Bordes.contains(MapaCanvas.getBounds().getNorthEast())) == false || (Bordes.contains(MapaCanvas.getBounds().getSouthWest()) == false)) 
+                        if ((Bordes.contains(MapaCanvas.getBounds().getNorthEast())) == false || (Bordes.contains(MapaCanvas.getBounds().getSouthWest()) == false))
                         {
                             CondicionZoom = true;
                             MapaCanvas.fitBounds(Bordes);
@@ -119,27 +119,27 @@ function GenerarMapa()
                 }
             });
         }
-        else 
+        else
         {
             MapaCanvas.setZoom(ZoomMinimo);
         }
-    });  
+    });
 
     // Ajusta el tamaño del mapa automaticamente
     var body = document.body, html = document.documentElement;
     var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight) - 200;
-    document.getElementById('Rowmapa').style.height = height + 'px';    
-    document.getElementById('montaña1').style.height = (height - 108)+ 'px';    
-    document.getElementById('montaña2').style.height = (height - 108) + 'px';    
-    document.getElementById('montaña3').style.height = (height - 108) + 'px';    
+    document.getElementById('Rowmapa').style.height = height + 'px';
+    document.getElementById('montaña1').style.height = (height - 108)+ 'px';
+    document.getElementById('montaña2').style.height = (height - 108) + 'px';
+    document.getElementById('montaña3').style.height = (height - 108) + 'px';
     $('.tabs_mapa').show();
 }
 
 /* Bloque la pantalla para que el mapa no se pueda mover */
-function DelimitarBordes(Parametro) 
+function DelimitarBordes(Parametro)
 {
     if (Parametro == "") {
-        if (Rectangulo != null) 
+        if (Rectangulo != null)
         {
             Rectangulo.setMap(null);
         }
@@ -156,7 +156,7 @@ function DelimitarBordes(Parametro)
         CoordenadaMundo = MapaCanvas.getProjection().fromLatLngToPoint(Tope);
         Proyeccion = MapaCanvas.getProjection();
         Rectangulo = new google.maps.Rectangle({ strokeColor: '#FF0000', strokeOpacity: 0.5, strokeWeight: 10, fillOpacity: 0, map: MapaCanvas, bounds: Bordes, zIndex: 1, clickable: true });
-        UltimoCentro = MapaCanvas.getCenter();        
+        UltimoCentro = MapaCanvas.getCenter();
 
         // Rectangulo Invisible marcadores //
         var PNW1 = Coordenadas_Cartesianas_APunto({ x: 10, y: 30 });
@@ -169,10 +169,10 @@ function DelimitarBordes(Parametro)
         BordesRectanguloMarcador.extend(PNW1);
         BordesRectanguloMarcador.extend(PNE1);
         BordesRectanguloMarcador.extend(PSW1);
-        BordesRectanguloMarcador.extend(PSE1);      
+        BordesRectanguloMarcador.extend(PSE1);
     }
     else {
-        if (Rectangulo != null) 
+        if (Rectangulo != null)
         {
             Bordes = null;
             Rectangulo.setMap(null);
@@ -185,19 +185,19 @@ function DelimitarBordes(Parametro)
 
 
 // Recordar tomar en cuenta guardar las opciones activadas en el espacio de trabajo //
-function GuardarEspacioDeTrabajo(Parametro) 
+function GuardarEspacioDeTrabajo(Parametro)
 {
-    if (Parametro == 0) 
+    if (Parametro == 0)
     {
         Proyecciones[ProyeccionActiva].EspaciosDeTrabajo.push({ Identificador: Alfabeto[Proyecciones[ProyeccionActiva].EspacioTrabajoContador], Zoom: MapaCanvas.getZoom(), Marcadores: _.cloneDeep(Proyecciones[ProyeccionActiva].MarcadoresCollecion) });
-        Espacio = Alfabeto[Proyecciones[ProyeccionActiva].EspacioTrabajoContador];        
+        Espacio = Alfabeto[Proyecciones[ProyeccionActiva].EspacioTrabajoContador];
         Proyecciones[ProyeccionActiva].EspacioTrabajoContador = Proyecciones[ProyeccionActiva].EspacioTrabajoContador + 1;
-        
-    }    
+
+    }
 }
 
 // Restaura los espacios de trabajo para una proyección //
-function RestaurarEspaciosDeTrabajo(ID) 
+function RestaurarEspaciosDeTrabajo(ID)
 {
     DelimitarBordes(2);
     OcultarMostrar_Cargas(1, ProyeccionActiva, null);
@@ -208,8 +208,7 @@ function RestaurarEspaciosDeTrabajo(ID)
     MapaCanvas.setCenter(Proyecciones[ProyeccionActiva].EspaciosDeTrabajo[ID].Centro);
     MapaCanvas.setZoom(Proyecciones[ProyeccionActiva].EspaciosDeTrabajo[ID].Zoom);
     OcultarMostrar_Cargas(1, ProyeccionActiva, MapaCanvas);
-    //ActualizarLeyenda();
-    Proyecciones[ProyeccionActiva].MarcadoresCollecion.forEach(function (Instancia) 
+    Proyecciones[ProyeccionActiva].MarcadoresCollecion.forEach(function (Instancia)
     {
         google.maps.event.addListener(Instancia.Marcador, 'click', function ()
         {
@@ -225,12 +224,12 @@ function RestaurarEspaciosDeTrabajo(ID)
             document.getElementById("clongitud").value = (Instancia.Marcador.position.lng()).toString();
             var Punto = RetornarCordenada(Instancia.Marcador, 0);
             document.getElementById("ccoordenadas").value = Punto.x + " , " + Math.abs((Punto.y - Altura));
-         
+
             if (Categoria.Categoria == '1') { document.getElementById("Cat1CentroEventual").checked = true; }
             else if (Categoria.Categoria == '2') { document.getElementById("Cat2CentroEventual").checked = true; }
             else { document.getElementById("Cat3CentroEventual").checked = true; }
             OperacionesTabla(5, Proyecciones[IndiceProyeccion].MarcadoresCollecion[BuscarIndice(Proyecciones[IndiceProyeccion].MarcadoresCollecion, Instancia.Marcador.tittle, 2, false)].Horas);
-            ContenedorTipo = "Marcador";            
+            ContenedorTipo = "Marcador";
             document.getElementById('ContenedorEmergente').style.top = "0px";
             document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";
             $("#ContenedorEmergente").show(1000);
@@ -238,7 +237,7 @@ function RestaurarEspaciosDeTrabajo(ID)
 
 
 
-        google.maps.event.addListener(Instancia.Marcador, 'dragstart', function (event) 
+        google.maps.event.addListener(Instancia.Marcador, 'dragstart', function (event)
         {
             $("#ContenedorEmergente").hide(300);
             MapaCanvas.setOptions({ draggable: false });
@@ -250,16 +249,16 @@ function RestaurarEspaciosDeTrabajo(ID)
             if(SwitchActivo('switchtiemporeal'))
             {
 
-                if(Proyecciones[ProyeccionActiva].ElipseDibujada == true) 
+                if(Proyecciones[ProyeccionActiva].ElipseDibujada == true)
                 {
                     if (SwitchActivo('switchcentroseventuales') == true) OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, MapaCanvas);
-                    else OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);            
+                    else OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
                     if (Proyecciones[ProyeccionActiva].ElipseDibujada == true) { CentrosEventualesDeCarga(1, BuscarProyeccionMarcador(Marcador.tittle)); }
-                    if (MostrarTodasProyecciones == true) { DetectarInterseccion(1); }                    
-                    if (Proyecciones[ProyeccionActiva].ElipseDibujada) { MapaAImagen(ProyeccionActiva, 0); }            
-                }                    
+                    if (MostrarTodasProyecciones == true) { DetectarInterseccion(1); }
+                    if (Proyecciones[ProyeccionActiva].ElipseDibujada) { MapaAImagen(ProyeccionActiva, 0); }
+                }
                     UltimoIndiceMarcador = BuscarIndice(Proyecciones[ProyeccionActiva].MarcadoresCollecion, Instancia.Marcador.tittle, 2);
-                    
+
             }
             if(SwitchActivo('switchcentroseventuales') == false)
             {
@@ -279,30 +278,30 @@ function RestaurarEspaciosDeTrabajo(ID)
             Referencia = Instancia.Marcador;
             var ProyeccionMarcador = BuscarProyeccionMarcador(Instancia.Marcador.tittle);
             var MarcadorObjeto = BuscarIndice(Proyecciones[ProyeccionMarcador].MarcadoresCollecion,Instancia.Marcador.tittle, 1);
-            if ((((RetornarCordenada(Instancia.Marcador).x)) > 0) && (((RetornarCordenada(Instancia.Marcador).x)) < (MapaCanvas.getDiv().offsetWidth))) 
+            if ((((RetornarCordenada(Instancia.Marcador).x)) > 0) && (((RetornarCordenada(Instancia.Marcador).x)) < (MapaCanvas.getDiv().offsetWidth)))
             {
                 MarcadorObjeto.X = ((RetornarCordenada(Instancia.Marcador).x));
                 MarcadorObjeto.XEscala = RetornarCordenada(Instancia.Marcador).x * EscalaMapaX;
             }
-            if ((((RetornarCordenada(Instancia.Marcador).y)) > 0) && (((RetornarCordenada(Instancia.Marcador).y)) < (Altura))) 
+            if ((((RetornarCordenada(Instancia.Marcador).y)) > 0) && (((RetornarCordenada(Instancia.Marcador).y)) < (Altura)))
             {
                 MarcadorObjeto.Y = ((Math.abs((RetornarCordenada(Instancia.Marcador).y) - Altura)));
                 MarcadorObjeto.YEscala = Math.abs((RetornarCordenada(Instancia.Marcador).y) - Altura) * EscalaMapaY;
             }
-            
-            if (SwitchActivo('switchtiemporeal') == true & Proyecciones[ProyeccionMarcador].ElipseDibujada == true) 
+
+            if (SwitchActivo('switchtiemporeal') == true & Proyecciones[ProyeccionMarcador].ElipseDibujada == true)
             {
                 CentrosEventualesDeCarga(2, ProyeccionMarcador);
             }
-            if(BordesRectanguloMarcador.contains(Instancia.Marcador.getPosition()) == false) 
+            if(BordesRectanguloMarcador.contains(Instancia.Marcador.getPosition()) == false)
             {
-                Instancia.Marcador.setPosition(UltimoCentroMarcador)  
-            }  
+                Instancia.Marcador.setPosition(UltimoCentroMarcador)
+            }
             else
             {
                 UltimoCentroMarcador = Instancia.Marcador.getPosition();
             }
-            if (MostrarTodasProyecciones == true) { DetectarInterseccion(0); }            
+            if (MostrarTodasProyecciones == true) { DetectarInterseccion(0); }
             if(SwitchActivo('switchelipse') == false){ OcultarMostrar_Elipses(1,ProyeccionActiva,null);}
         });
 
@@ -310,7 +309,7 @@ function RestaurarEspaciosDeTrabajo(ID)
     CentrosEventualesDeCarga(1, ProyeccionActiva);
     DelimitarBordes("");
     Espacio = ID;
-    $.Notification.autoHideNotify('success', 'top right', 'Se restauro el espacio de trabajo exitosamente');                
+    $.Notification.autoHideNotify('success', 'top right', 'Se restauro el espacio de trabajo exitosamente');
 }
 
 
@@ -337,11 +336,11 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
 
         var Horas = OperacionesTabla(2, null);
         Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({ Titulo: Alfabeto[Proyecciones[ProyeccionActiva].Contador - 1] + (ProyeccionActiva + 1).toString(), Categoria: "1", Marcador: Marcador, Horas, X: RetornarCordenada(Marcador).x, Y: Math.abs((RetornarCordenada(Marcador).y) - Altura), Posicion: Proyecciones[ProyeccionActiva].Contador, Proyeccion: ProyeccionActiva });
-        Proyecciones[ProyeccionActiva].Contador++;        
+        Proyecciones[ProyeccionActiva].Contador++;
 
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Marcador.getPosition().lat() + ",+" + Marcador.getPosition().lng() + "&key=" + API_KEY, Geolocalizacion);
-        google.maps.event.addListener(Marcador, 'click', function (event) 
-        {            
+        google.maps.event.addListener(Marcador, 'click', function (event)
+        {
             document.getElementById('rowcategoria').style.display = 'block';
             document.getElementById('rowtabla').style.display = 'block';
             document.getElementById('guardarcontenedor').style.display = 'block';
@@ -354,25 +353,25 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
             document.getElementById("clongitud").value = (Marcador.position.lng()).toString();
             var Punto = RetornarCordenada(Marcador, 0);
             document.getElementById("ccoordenadas").value = Punto.x + " , " + Math.abs((Punto.y - Altura));
-         
+
             if (Categoria.Categoria == '1') { document.getElementById("Cat1CentroEventual").checked = true; }
             else if (Categoria.Categoria == '2') { document.getElementById("Cat2CentroEventual").checked = true; }
             else { document.getElementById("Cat3CentroEventual").checked = true; }
             OperacionesTabla(5, Proyecciones[IndiceProyeccion].MarcadoresCollecion[BuscarIndice(Proyecciones[IndiceProyeccion].MarcadoresCollecion, Marcador.tittle, 2, false)].Horas);
-            ContenedorTipo = "Marcador";            
+            ContenedorTipo = "Marcador";
             document.getElementById('ContenedorEmergente').style.top= "0px";
             document.getElementById('ContenedorEmergente').style.left = ($('#containermapa').width() - $('#containermapa').width() / 5.5) + "px";
             $("#ContenedorEmergente").show(1000);
 
         });
 
-        google.maps.event.addListener(Marcador, 'dragstart', function (event) 
+        google.maps.event.addListener(Marcador, 'dragstart', function (event)
         {
             $("#ContenedorEmergente").hide(300);
             MapaCanvas.setOptions({ draggable: false });
         });
 
-        google.maps.event.addListener(Marcador, 'dragend', function (event) 
+        google.maps.event.addListener(Marcador, 'dragend', function (event)
         {
 
             MapaCanvas.setOptions({ draggable: true });
@@ -380,16 +379,16 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
             if(SwitchActivo('switchtiemporeal'))
             {
 
-                if(Proyecciones[ProyeccionActiva].ElipseDibujada == true) 
+                if(Proyecciones[ProyeccionActiva].ElipseDibujada == true)
                 {
                     if (SwitchActivo('switchcentroseventuales') == true) OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, MapaCanvas);
-                    else OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);            
+                    else OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
                     if (Proyecciones[ProyeccionActiva].ElipseDibujada == true) { CentrosEventualesDeCarga(1, BuscarProyeccionMarcador(Marcador.tittle)); }
-                    if (MostrarTodasProyecciones == true) { DetectarInterseccion(1); }                    
-                    if (Proyecciones[ProyeccionActiva].ElipseDibujada) { MapaAImagen(ProyeccionActiva, 0); }            
-                }                    
+                    if (MostrarTodasProyecciones == true) { DetectarInterseccion(1); }
+                    if (Proyecciones[ProyeccionActiva].ElipseDibujada) { MapaAImagen(ProyeccionActiva, 0); }
+                }
                     UltimoIndiceMarcador = BuscarIndice(Proyecciones[ProyeccionActiva].MarcadoresCollecion, Marcador.tittle, 2);
-                    
+
             }
             if(SwitchActivo('switchcentroseventuales') == false)
             {
@@ -409,43 +408,43 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
             Referencia = Marcador;
             var ProyeccionMarcador = BuscarProyeccionMarcador(Marcador.tittle);
             var MarcadorObjeto = BuscarIndice(Proyecciones[ProyeccionMarcador].MarcadoresCollecion, Marcador.tittle, 1);
-            if ((((RetornarCordenada(Marcador).x)) > 0) && (((RetornarCordenada(Marcador).x)) < (MapaCanvas.getDiv().offsetWidth))) 
+            if ((((RetornarCordenada(Marcador).x)) > 0) && (((RetornarCordenada(Marcador).x)) < (MapaCanvas.getDiv().offsetWidth)))
             {
                 MarcadorObjeto.X = ((RetornarCordenada(Marcador).x));
                 MarcadorObjeto.XEscala = RetornarCordenada(Marcador).x * EscalaMapaX;
             }
-            if ((((RetornarCordenada(Marcador).y)) > 0) && (((RetornarCordenada(Marcador).y)) < (Altura))) 
+            if ((((RetornarCordenada(Marcador).y)) > 0) && (((RetornarCordenada(Marcador).y)) < (Altura)))
             {
                 MarcadorObjeto.Y = ((Math.abs((RetornarCordenada(Marcador).y) - Altura)));
                 MarcadorObjeto.YEscala = Math.abs((RetornarCordenada(Marcador).y) - Altura) * EscalaMapaY;
             }
-            
-            if (SwitchActivo('switchtiemporeal') == true & Proyecciones[ProyeccionMarcador].ElipseDibujada == true) 
+
+            if (SwitchActivo('switchtiemporeal') == true & Proyecciones[ProyeccionMarcador].ElipseDibujada == true)
             {
                 CentrosEventualesDeCarga(2, ProyeccionMarcador);
             }
-            if(BordesRectanguloMarcador.contains(Marcador.getPosition()) == false) 
+            if(BordesRectanguloMarcador.contains(Marcador.getPosition()) == false)
             {
-                Marcador.setPosition(UltimoCentroMarcador)  
-            }  
+                Marcador.setPosition(UltimoCentroMarcador)
+            }
             else
             {
                 UltimoCentroMarcador = Marcador.getPosition();
             }
-            if (MostrarTodasProyecciones == true) { DetectarInterseccion(0); }            
+            if (MostrarTodasProyecciones == true) { DetectarInterseccion(0); }
             if(SwitchActivo('switchelipse') == false){ OcultarMostrar_Elipses(1,ProyeccionActiva,null);}
-        });           
+        });
     }
-    else 
+    else
     {
-            $.Notification.autoHideNotify('error', 'top right', 'No se pueden poner mas de 10 cargas.')                                                
+            $.Notification.autoHideNotify('error', 'top right', 'No se pueden poner mas de 10 cargas.')
     }
     //ActualizarLeyenda();
 }
 
 
 /* Permite ver los consumidores por categoria */
-function VerConsumidores(Estado) 
+function VerConsumidores(Estado)
 {
     if (Estado == true) {
         MostrarConsumidores(UltimoCentro, MapaCanvas);
@@ -603,7 +602,7 @@ function Reiniciar() {
         Proyecciones[I].ElipseDibujada = false;
         Proyecciones[I].Centro = null;
         Proyecciones[I].EspaciosDeTrabajo = new Array();
-        Proyecciones[I].ElipseDibujada = null;        
+        Proyecciones[I].ElipseDibujada = null;
         Proyecciones[I].Contador = 1;
         Proyecciones[ProyeccionActiva].EspacioTrabajoContador = 0;
         if(CentroInterseccion != null) { CentroInterseccion.setMap(null);}
@@ -612,11 +611,11 @@ function Reiniciar() {
     }
     //document.querySelector('#TablaUsuarios #Cuerpo').innerHTML = "";
     DelimitarBordes('2');
-    for (var i = 0; i < PinConsumidores.length; i++) 
+    for (var i = 0; i < PinConsumidores.length; i++)
     {
         PinConsumidores[i].location.setMap(null);
     }
-      $.Notification.autoHideNotify('success', 'top right', 'Se ha reiniciado todo.')                                               
+      $.Notification.autoHideNotify('success', 'top right', 'Se ha reiniciado todo.')
 }
 
 
@@ -629,12 +628,12 @@ function ActualizarCategoriaMarcador(Parametro) {
     (typeof Referencia == 'string') ? (Referencia = Referencia) : (Referencia = Referencia.tittle)
     var Marcador = BuscarIndice(Proyecciones[ProyeccionActiva].MarcadoresCollecion, Referencia, 1);
     Marcador.Categoria = Parametro;
-    Marcador.Horas = OperacionesTabla(1, null);    
+    Marcador.Horas = OperacionesTabla(1, null);
 
 }
 
 /* Guarda los cambios de las potencias  del centro eventual de carga */
-function GuardarCambiosContenedor() 
+function GuardarCambiosContenedor()
 {
     (typeof Referencia == 'string') ? (Referencia = Referencia) : (Referencia = Referencia.tittle)
     var ReferenciaMarcador = BuscarIndice(Proyecciones[ProyeccionActiva].MarcadoresCollecion, Referencia, 1);
@@ -642,7 +641,7 @@ function GuardarCambiosContenedor()
 
     var Puntos = CoordenadaTexto.split(",");
     if (Puntos.length == 2) {
-        if (isNaN(Puntos[0]) == false && isNaN(Puntos[1]) == false) 
+        if (isNaN(Puntos[0]) == false && isNaN(Puntos[1]) == false)
         {
             Puntos[0] = parseInt(Puntos[0].replace(/\s/g, ''));
             Puntos[1] = Math.abs(parseInt(Puntos[1].replace(/\s/g, '')) - Altura);
@@ -664,14 +663,14 @@ function GuardarCambiosContenedor()
             }
         }
         else {
-            
+
                 $.Notification.autoHideNotify('error', 'top right', 'La entrada no es valida.');
 
         }
     }
     else {
         $.Notification.autoHideNotify('error', 'top right', 'La entrada no es valida.');
-    }    
+    }
 }
 
 
@@ -679,14 +678,14 @@ function GuardarCambiosContenedor()
 /* Retorna las Coordeandas de un marcador en especifico */
 function RetornarCordenada(Marcador, Parametro) {
     Parametro = Parametro || 0;
-    if (Parametro == 0) 
-    {        
+    if (Parametro == 0)
+    {
             var CoordenadaMarcador = Proyeccion.fromLatLngToPoint(Marcador.getPosition());
             var CoordenadaFinal = new google.maps.Point(Math.floor((CoordenadaMarcador.x - CoordenadaMundo.x) * Escala),
             (Math.floor((CoordenadaMarcador.y - CoordenadaMundo.y) * Escala)));
-            return CoordenadaFinal;        
+            return CoordenadaFinal;
     }
-    else 
+    else
     {
         var CoordenadaMarcador = Proyeccion.fromLatLngToPoint(Marcador);
         var CoordenadaFinal = new google.maps.Point(
@@ -697,9 +696,9 @@ function RetornarCordenada(Marcador, Parametro) {
 }
 
 /* Convierte las coordenadas en formato cartesiano a un punto */
-function Coordenadas_Cartesianas_APunto(Cartesiano) 
-{    
-        try 
+function Coordenadas_Cartesianas_APunto(Cartesiano)
+{
+        try
         {
             var Noroeste = MapaCanvas.getProjection().fromLatLngToPoint(Bordes.getNorthEast());
             var SurEste = MapaCanvas.getProjection().fromLatLngToPoint(Bordes.getSouthWest());
@@ -707,19 +706,19 @@ function Coordenadas_Cartesianas_APunto(Cartesiano)
             var CoordenadasEsfericas = new google.maps.Point(Cartesiano.x / Escala + SurEste.x, Cartesiano.y / Escala + Noroeste.y);
             return MapaCanvas.getProjection().fromPointToLatLng(CoordenadasEsfericas);
         }
-        catch (Excepcion) 
+        catch (Excepcion)
         {
             var Noroeste = MapaCanvas.getProjection().fromLatLngToPoint(MapaCanvas.getBounds().getNorthEast());
             var SurEste = MapaCanvas.getProjection().fromLatLngToPoint(MapaCanvas.getBounds().getSouthWest());
             var Escala = Math.pow(2, MapaCanvas.getZoom());
             var CoordenadasEsfericas = new google.maps.Point(Cartesiano.x / Escala + SurEste.x, Cartesiano.y / Escala + Noroeste.y);
-            return MapaCanvas.getProjection().fromPointToLatLng(CoordenadasEsfericas);        
+            return MapaCanvas.getProjection().fromPointToLatLng(CoordenadasEsfericas);
         }
 }
 
 /* Genera potencias aleatorias para que funcione el algoritmo */
 function PotenciasAleatorios()
-{    
+{
     for (var I = 0; I <= (Proyecciones[ProyeccionActiva].MarcadoresCollecion.length) - 1; I++)
     {
         for (var J = 0; J <= 23; J++)
@@ -728,7 +727,7 @@ function PotenciasAleatorios()
         }
     }
 }
- 
+
 
 // Devuelve el indice de la proyección en la que esta un marcador //
 function BuscarProyeccionMarcador(TituloMarcador) {
@@ -762,7 +761,7 @@ function BuscarIndice(Arreglo, Valor, Parametro) {
 
 
 
-/*Sección de funciones relativas a las tablas 
+/*Sección de funciones relativas a las tablas
 		/*Actualiza  la tabla con los nuevos datos de los marcadores */
 function ActualizarTabla()
 {
@@ -782,7 +781,7 @@ function ActualizarTabla()
         Celda0.innerHTML = ArregloConsumidores[I][0];
         if(ArregloConsumidores[I][1] == "1")
         {
-            Celda1.innerHTML = '<span class="label label-table label-inverse">Categoria '+ArregloConsumidores[I][1]+'</span>'    
+            Celda1.innerHTML = '<span class="label label-table label-inverse">Categoria '+ArregloConsumidores[I][1]+'</span>'
         }
         else if (ArregloConsumidores[I][1] == "2")
         {
@@ -794,7 +793,7 @@ function ActualizarTabla()
         }
         else
         {
-            Celda1.innerHTML  = '?';   
+            Celda1.innerHTML  = '?';
         }
 
         Celda2.innerHTML = (ArregloConsumidores[I][2]);
@@ -805,7 +804,7 @@ function ActualizarTabla()
 
             if (isNaN(ArregloConsumidores[I][5]) == false) { Celda5.innerHTML = Math.trunc(ArregloConsumidores[I][5]).toFixed(4); }
             else { Celda5.innerHTML = (ArregloConsumidores[I][5]); }
-            Celda6.innerHTML = '<button type="button" class="btn btn-googleplus waves-effect waves-light ui-btn ui-shadow ui-corner-all" onclick="VerMarcadorMapa(\'' + ArregloConsumidores[I][0] + '\')"><i class="fa fa-map-marker"></i></button>' 
+            Celda6.innerHTML = '<button type="button" class="btn btn-googleplus waves-effect waves-light ui-btn ui-shadow ui-corner-all" onclick="VerMarcadorMapa(\'' + ArregloConsumidores[I][0] + '\')"><i class="fa fa-map-marker"></i></button>'
         }
         else
         {
@@ -818,8 +817,6 @@ function ActualizarTabla()
 
 
 function ActualizarTablaCentrosEventuales() {
-    MostrarOcultarContenedor('containermapa');
-    Activo = "containermapa";
     var Tabla = document.getElementById('cuerpotablacentroseventuales');
     Tabla.innerHTML = "";
     ArregloConsumidores = DevolvertablaCentrosEventuales(ProyeccionActiva);
@@ -855,7 +852,7 @@ function ActualizarTablaCentrosEventuales() {
 function ActualizarTablaPotencias() {
     var Tabla = document.getElementById('tablapotenicas24');
     Tabla.innerHTML = "";
-    for (var I = 0; I <= 23; I++) 
+    for (var I = 0; I <= 23; I++)
     {
         ArregloConsumidores = DevolverFilasArreglo(I, ProyeccionActiva)
         var Fila = Tabla.insertRow(Tabla.getElementsByTagName("tr").length);
@@ -874,7 +871,7 @@ function ActualizarTablaPotencias() {
         var Celda12 = Fila.insertCell(12);
         var Celda13 = Fila.insertCell(13);
         var Celda14 = Fila.insertCell(14);
-        
+
 
 
         Celda0.innerHTML = (ArregloConsumidores[0]);
@@ -885,19 +882,19 @@ function ActualizarTablaPotencias() {
         Celda5.innerHTML = (ArregloConsumidores[5]);
         Celda6.innerHTML = (ArregloConsumidores[6]);
         Celda7.innerHTML = (ArregloConsumidores[7]);
-        Celda8.innerHTML = (ArregloConsumidores[8]);                
-        Celda9.innerHTML = (ArregloConsumidores[9]);                
+        Celda8.innerHTML = (ArregloConsumidores[8]);
+        Celda9.innerHTML = (ArregloConsumidores[9]);
         Celda10.innerHTML = '<td><span class="label label-table label-success">'+(ArregloConsumidores[10])+'</span></td>';
         Celda11.innerHTML = '<td><span class="label label-table label-primary">'+(ArregloConsumidores[11])+'</span></td>';
         Celda12.innerHTML = '<td><span class="label label-table label-inverse">'+(ArregloConsumidores[12])+'</span></td>';
-        Celda13.innerHTML = '<td><span class="label label-table label-default">'+(ArregloConsumidores[13])+'</span></td>';        
-        Celda14.innerHTML = '<td><span class="label label-table label-default">'+(ArregloConsumidores[14])+'</span></td>';        
+        Celda13.innerHTML = '<td><span class="label label-table label-default">'+(ArregloConsumidores[13])+'</span></td>';
+        Celda14.innerHTML = '<td><span class="label label-table label-default">'+(ArregloConsumidores[14])+'</span></td>';
     }
 }
 
 
 /* Operaciones de la tablas de potencia del contenedor */
-function OperacionesTabla(Caso, Arreglo) 
+function OperacionesTabla(Caso, Arreglo)
 {
     var Potencias = []
     /*Lectura de las potencias */
@@ -923,12 +920,12 @@ function OperacionesTabla(Caso, Arreglo)
     }
 }
 
-function ActualizarTablaEspaciosDeTrabajo() 
+function ActualizarTablaEspaciosDeTrabajo()
 {
     Tabla = document.getElementById('cuerpoEspacioTrabajo');
     Tabla.innerHTML = "";
 
-    for (I = 0; I < Proyecciones[ProyeccionActiva].EspaciosDeTrabajo.length; I++) 
+    for (I = 0; I < Proyecciones[ProyeccionActiva].EspaciosDeTrabajo.length; I++)
     {
         var Fila = Tabla.insertRow(Tabla.getElementsByTagName("tr").length);
         var Celda1 = Fila.insertCell(0);
@@ -940,7 +937,7 @@ function ActualizarTablaEspaciosDeTrabajo()
 
 
 
-function VerMarcadorMapa(Consumidor) 
+function VerMarcadorMapa(Consumidor)
 {
     MostrarOcultarContenedor('containermapa');
     Activo = "containermapa";
@@ -968,7 +965,7 @@ function VerMarcadorCentroEventualMapa(CentroEventual) {
     CentroEventualMarcador.setAnimation(google.maps.Animation.BOUNCE);
     var Detener = setTimeout(Animacion, 6000);
 
-    function Animacion() 
+    function Animacion()
     {
         CentroEventualMarcador.setAnimation(google.maps.Animation.null);
     }
@@ -1113,13 +1110,13 @@ function UbicarPinPrueba() {
 
 
 
-function ActualizarInformacionProyeccionActual() 
+function ActualizarInformacionProyeccionActual()
 {
-    document.getElementById('CMapaLatitud').innerHTML = 'Centro del mapa (Latitud) :' +MapaCanvas.getCenter().lat();     
-    document.getElementById('CMapaLongitud').innerHTML = 'Centro del mapa (Longitud) :' +MapaCanvas.getCenter().lng();         
+    document.getElementById('CMapaLatitud').innerHTML = 'Centro del mapa (Latitud) :' +MapaCanvas.getCenter().lat();
+    document.getElementById('CMapaLongitud').innerHTML = 'Centro del mapa (Longitud) :' +MapaCanvas.getCenter().lng();
     var Punto = RetornarCordenada(MapaCanvas.getCenter(),1);
     document.getElementById('CMapaCentroX').innerHTML = 'Centro del mapa (Cx) : ' +Punto.x;
-    document.getElementById('CMapaCentroY').innerHTML = 'Centro del mapa (Cy) : ' +Punto.y;    
+    document.getElementById('CMapaCentroY').innerHTML = 'Centro del mapa (Cy) : ' +Punto.y;
     if(Proyecciones[ProyeccionActiva].Elipse != null)
     {
         document.getElementById('CElipseLatitud').innerHTML = 'Centro Elipse (Latitud) : '+ Proyecciones[ProyeccionActiva].Centro.getPosition().lat();
@@ -1128,26 +1125,26 @@ function ActualizarInformacionProyeccionActual()
         document.getElementById('CElipseX').innerHTML = 'Centro Elipse (Cx) : '+ Punto.x;
         document.getElementById('CElipseY').innerHTML = 'Centro Elipse (Cy) : ' +Punto.y;
         document.getElementById('CElipseArea').innerHTML = 'Area Elipse  : ' +google.maps.geometry.spherical.computeArea(Proyecciones[ProyeccionActiva].Elipse.getPath()) + " Metros Cuadrados";
-    }  
+    }
     else
     {
         document.getElementById('CElipseLatitud').innerHTML = 'Centro Elipse (Latitud) : ?'
-        document.getElementById('CElipseLongitud').innerHTML = 'Centro Elipse (Longitud) :  ?'         
-        document.getElementById('CElipseX').innerHTML = 'Centro Elipse (Cx) : ?' 
-        document.getElementById('CElipseY').innerHTML = 'Centro Elipse (Cy) : ?' 
-        document.getElementById('CElipseArea').innerHTML = 'Area Elipse  : ?' 
+        document.getElementById('CElipseLongitud').innerHTML = 'Centro Elipse (Longitud) :  ?'
+        document.getElementById('CElipseX').innerHTML = 'Centro Elipse (Cx) : ?'
+        document.getElementById('CElipseY').innerHTML = 'Centro Elipse (Cy) : ?'
+        document.getElementById('CElipseArea').innerHTML = 'Area Elipse  : ?'
     }
-     document.getElementById('CEscala').innerHTML = 'Escala en X : '+EscalaMapaX;    
-     document.getElementById('CEscalaY').innerHTML = 'Escala en Y : '+EscalaMapaY;    
+     document.getElementById('CEscala').innerHTML = 'Escala en X : '+EscalaMapaX;
+     document.getElementById('CEscalaY').innerHTML = 'Escala en Y : '+EscalaMapaY;
 }
 
-function ActualizarInformacion() 
+function ActualizarInformacion()
 {
     var Fecha = new Date();
-/*  document.getElementById('PActiva').innerHTML = "Proyección Activa: P" + (ProyeccionActiva + 1); 
+/*  document.getElementById('PActiva').innerHTML = "Proyección Activa: P" + (ProyeccionActiva + 1);
     document.getElementById('PMarcadoresN1').innerHTML = "N° Marcadores P1 (" + Fecha.getFullYear() + ": " + Proyecciones[0].MarcadoresCollecion.length + "/10";
     document.getElementById('PMarcadoresN2').innerHTML = "N° Marcadores P2 (" + (Fecha.getFullYear() + 10) + ": " + Proyecciones[1].MarcadoresCollecion.length + "/10";
-    document.getElementById('PMarcadoresN3').innerHTML = "N° Marcadores P3 (" + (Fecha.getFullYear() + 20) + ": " + Proyecciones[2].MarcadoresCollecion.length + "/10"; 
+    document.getElementById('PMarcadoresN3').innerHTML = "N° Marcadores P3 (" + (Fecha.getFullYear() + 20) + ": " + Proyecciones[2].MarcadoresCollecion.length + "/10";
     document.getElementById('PTipoGuia').innerHTML = "Tipo de guia : Mapa";                                                                                                     */
     var ElipseP1Datos = CentroElipse(0);
     if (ElipseP1Datos != "?") {
@@ -1196,7 +1193,7 @@ function ActualizarInformacion()
     document.getElementById('PYEscala').innerHTML = "Escala en Y : " + EscalaMapaY + "Metros"   */
 }
 
-function GeolocalizacionNavegador() 
+function GeolocalizacionNavegador()
 {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -1226,7 +1223,7 @@ function GeolocalizacionNavegador()
                     content: CadenaHTML
                 });
 
-            MarcadorCiudad.addListener('click', function () 
+            MarcadorCiudad.addListener('click', function ()
             {
                 VentanaInformacion.open(MapaCanvas, MarcadorCiudad);
             });
@@ -1420,7 +1417,7 @@ function RecopilarJSON() {
     JSONBBDD = JSONBBDD + '"ELipseP3Dibujada":' + Proyecciones[2].ElipseDibujada + ",";
 
     JSONBBDD = JSONBBDD + '"WS1": [{';
-    for (I = 0; I < Proyecciones[0].EspaciosDeTrabajo.length; I++) {        
+    for (I = 0; I < Proyecciones[0].EspaciosDeTrabajo.length; I++) {
         JSONBBDD = JSONBBDD + '"Identificador":"' + Proyecciones[0].EspaciosDeTrabajo[I].Identificador + '"';
         JSONBBDD = JSONBBDD + ',"MarcadoresP1": ['
         for (J = 0; J < Proyecciones[0].EspaciosDeTrabajo[I].Marcadores.length; J++) {
@@ -1435,18 +1432,18 @@ function RecopilarJSON() {
             }
 
             if ((J == Proyecciones[0].EspaciosDeTrabajo[I].Marcadores.length - 1)) {
-                JSONBBDD = JSONBBDD + ']}],"Zoom":"' + Proyecciones[0].EspaciosDeTrabajo[I].Zoom + '"';                
+                JSONBBDD = JSONBBDD + ']}],"Zoom":"' + Proyecciones[0].EspaciosDeTrabajo[I].Zoom + '"';
                 JSONBBDD = JSONBBDD + '},{';
             }
             else {
                 JSONBBDD = JSONBBDD + ']';
                 JSONBBDD = JSONBBDD + '},';
-            }            
+            }
         }
-    }    
+    }
     JSONBBDD = JSONBBDD + '}],';
 
-        
+
 
     JSONBBDD = JSONBBDD + '"WS2": [{';
     for (I = 0; I < Proyecciones[1].EspaciosDeTrabajo.length; I++) {
@@ -1506,20 +1503,20 @@ function RecopilarJSON() {
     JSONBBDD = JSONBBDD + ',"Centro": {"Latitud":"' + MapaCanvas.getCenter().lat() + '","Longitud":"' + MapaCanvas.getCenter().lng() + '"}';
     JSONBBDD = JSONBBDD + ',"Zoom": {"Valor":"' + MapaCanvas.getZoom()+'"}';
     JSONBBDD = JSONBBDD + ',"OpcionesGlobales": [';
-    
+
     JSONBBDD = JSONBBDD + '{';
     JSONBBDD = JSONBBDD + '"TodosCentrosCarga":' + OpcionesGlobales[0].TodosCentrosCarga + ",";
     JSONBBDD = JSONBBDD + '"TodosCentrosEventuales":' + OpcionesGlobales[0].TodosCentrosEventuales + ","
-    JSONBBDD = JSONBBDD + '"TodasElipses":' + OpcionesGlobales[0].TodasElipses + ","            
-    JSONBBDD = JSONBBDD + '"MostrarLeyenda":' + OpcionesGlobales[0].MostrarLeyenda + ","            
-    JSONBBDD = JSONBBDD + '"MostrarPinCiudad":' + OpcionesGlobales[0].MostrarPinCiudad + ","            
-    JSONBBDD = JSONBBDD + '"OpacidadBorde":' + OpcionesGlobales[0].OpacidadBorde + ","            
-    JSONBBDD = JSONBBDD + '"OpacidadRelleno":' + OpcionesGlobales[0].OpacidadRelleno + ","            
-    JSONBBDD = JSONBBDD + '"Paso":' + OpcionesGlobales[0].Paso + "}"            
-    
+    JSONBBDD = JSONBBDD + '"TodasElipses":' + OpcionesGlobales[0].TodasElipses + ","
+    JSONBBDD = JSONBBDD + '"MostrarLeyenda":' + OpcionesGlobales[0].MostrarLeyenda + ","
+    JSONBBDD = JSONBBDD + '"MostrarPinCiudad":' + OpcionesGlobales[0].MostrarPinCiudad + ","
+    JSONBBDD = JSONBBDD + '"OpacidadBorde":' + OpcionesGlobales[0].OpacidadBorde + ","
+    JSONBBDD = JSONBBDD + '"OpacidadRelleno":' + OpcionesGlobales[0].OpacidadRelleno + ","
+    JSONBBDD = JSONBBDD + '"Paso":' + OpcionesGlobales[0].Paso + "}"
+
     JSONBBDD = JSONBBDD + ']}';
-      
-} 
+
+}
 
 function RestaurarDatosJSON(JSONRestaurar) {
     var ObjetoRecuperacion = JSON.parse(JSONRestaurar);
@@ -1574,7 +1571,7 @@ function RestaurarDatosJSON(JSONRestaurar) {
 
     ObjetoRecuperacion.WS1.forEach(function (DatosMarcador) {
         if (DatosMarcador.Identificador != null)
-        {            
+        {
             Proyecciones[ProyeccionActiva].EspaciosDeTrabajo.push({ Identificador: DatosMarcador.Identificador, Zoom: DatosMarcador.Zoom, Marcadores: new Array() });
             DatosMarcador.MarcadoresP1.forEach(function (Marcador)
             {

@@ -1,20 +1,20 @@
 var Activo = "containermapa";
-var DxTexto = null ; 
-var DyTexto = null; 
-var SigmaXTexto = null; 
-var SigmaYTexto = null; 
-var HxTexto = null ; 
-var HyTexto = null; 
-var AxTexto = null; 
+var DxTexto = null ;
+var DyTexto = null;
+var SigmaXTexto = null;
+var SigmaYTexto = null;
+var HxTexto = null ;
+var HyTexto = null;
+var AxTexto = null;
 var AyTexto = null
-var CxyTexto = null; 
-var rTexto = null; 
-var FhiSigmaTexto = null ; 
-var PhiSigmaTexto = null ; 
+var CxyTexto = null;
+var rTexto = null;
+var FhiSigmaTexto = null ;
+var PhiSigmaTexto = null ;
 var FhiExactitudTexto  = null ;
 var PhiExactitudTexto   = null;
-var FhiRadioTexto = null ; 
-var  PhiRadioTexto = null; 
+var FhiRadioTexto = null ;
+var  PhiRadioTexto = null;
 var AnguloTexto = null;
 
 var CMapaLatitud = null;
@@ -76,86 +76,78 @@ var ContenedorTipo = "";
 const API_KEY = 'AIzaSyArDK0WfiSl45XvXXIfvAj7RDvt-JUBsXU';
 
 
-$( document ).ready(function() 
+$( document ).ready(function()
 {
-  	
+
   	/* Eventos del menu lateral */
-            $( "#sb_googlemaps" ).click(function() 
+            $( "#sb_googlemaps" ).click(function()
             {
                 MostrarOcultarContenedor('containermapa');
                 Activo = "containermapa";
-            }); 
+            });
 
 
-            $( "#sb_graficas" ).click(function() 
-            {                
+            $( "#sb_graficas" ).click(function()
+            {
                 MostrarOcultarContenedor('containergraficas');
-                Activo = "containergraficas";                               
+                Activo = "containergraficas";
 
-            }); 
+            });
 
-        	
-          	$( "#sb_reportes" ).click(function() 
+
+          	$( "#sb_reportes" ).click(function()
           	{
                 if(Rectangulo != null)
-                {                  
-            	   ActualizarTabla();
-                   ActualizarTablaCentrosEventuales();
-                   ActualizarInformacionProyeccionActual()
-                   ActualizarTablaPotencias();
-                   MostrarOcultarContenedor('containerreportes');
-            	   Activo = "containerreportes";
-                   document.getElementById('cargasproyeccion').innerHTML = Proyecciones[ProyeccionActiva].MarcadoresCollecion.length + " / 10";
-                   document.getElementById('centrosproyeccion').innerHTML = Proyecciones[ProyeccionActiva].CentrosEventuales.length + " / 24";
-                   document.getElementById('Radiox').innerHTML = Math.trunc(Proyecciones[ProyeccionActiva].FhiRadio);
-                   document.getElementById('Radioy').innerHTML = Math.trunc(Proyecciones[ProyeccionActiva].PhiRadio);
+                {
+                    actualizar_reportes();
+                    MostrarOcultarContenedor('containerreportes');
+                    Activo = "containerreportes";
                 }
                 else
                 {
                   $.Notification.autoHideNotify('error', 'top right', 'Limite la zona del mapa primero')                                                ;
                 }
           	});
-
-
-            $( "#sb_proyecciones" ).click(function() 
-            { 
+    
+            $( "#sb_proyecciones" ).click(function()
+            {
                   var Total =0;
                    ActualizarTablaEspaciosDeTrabajo();
                    MostrarOcultarContenedor('containerproyecciones');
-                   
+
 
                    Activo = "containerproyecciones";
 
 /*********************  VALIDACION EN CASO DE QUE EL ARREGLO ESTE VACIO Y NO RETORNE NULL, SE RETORNA CERO***************************************************************** */
                     try{
-                   document.getElementById('Proyeccion1').innerHTML= Proyecciones[0].MarcadoresCollecion.length + " / 10"; 
+                   document.getElementById('Proyeccion1').innerHTML= Proyecciones[0].MarcadoresCollecion.length + " / 10";
                    Total = Total + Proyecciones[0].MarcadoresCollecion.length;
                    }
                    catch(e)
                    {
-                    document.getElementById('Proyeccion1').innerHTML= " 0 / 10"; 
+                    document.getElementById('Proyeccion1').innerHTML= " 0 / 10";
                     Total = Total + 0;
                    }
 
 
                    try{
-                   document.getElementById('Proyeccion2').innerHTML= Proyecciones[1].MarcadoresCollecion.length + " / 10"; 
+                   document.getElementById('Proyeccion2').innerHTML= Proyecciones[1].MarcadoresCollecion.length + " / 10";
                    Total = Total + Proyecciones[1].MarcadoresCollecion.length;
                    }
                    catch(e)
                    {
-                    document.getElementById('Proyeccion2').innerHTML= " 0 / 10"; 
+                    document.getElementById('Proyeccion2').innerHTML= " 0 / 10";
                     Total = Total + 0;
                    }
 
 
                      try{
-                   document.getElementById('Proyeccion3').innerHTML= Proyecciones[2].MarcadoresCollecion.length + " / 10"; 
+                   document.getElementById('Proyeccion3').innerHTML= Proyecciones[2].MarcadoresCollecion.length + " / 10";
                    Total = Total + Proyecciones[2].MarcadoresCollecion.length;
                    }
                    catch(e)
                    {
-                    document.getElementById('Proyeccion3').innerHTML= " 0 / 10"; 
+                    document.getElementById('Proyeccion3').innerHTML= " 0 / 10";
                     Total = Total + 0;
                    }
 
@@ -168,7 +160,7 @@ $( document ).ready(function()
 
 
 /* **********************************SE AÑADE METODO PARA LA UBICACION DEL PIN DE PRUEBA****************************************************************************/
-            $( "#PinDePrueba").click(function() 
+            $( "#PinDePrueba").click(function()
             {
                     UbicarPinPrueba();
             });
@@ -183,7 +175,7 @@ $( document ).ready(function()
 
 
 
-            $( "#sb_configuracion" ).click(function() 
+            $( "#sb_configuracion" ).click(function()
             {
                    MostrarOcultarContenedor('containerconfiguracion');
                    Activo = "containerconfiguracion";
@@ -191,25 +183,25 @@ $( document ).ready(function()
 
 
 
-            $( "#Rowmapa" ).mousemove(function( event ) 
-            {  
+            $( "#Rowmapa" ).mousemove(function( event )
+            {
                 if(Rectangulo != null)
                 {
-                    var OFFSIDE = $('#Rowmapa').offset();            
+                    var OFFSIDE = $('#Rowmapa').offset();
                     LeftContendor = event.clientX - OFFSIDE.left;
-                    TopContenedor = event.clientY - OFFSIDE.top;    
-                                                                                      
-                }                
+                    TopContenedor = event.clientY - OFFSIDE.top;
+
+                }
             });
 
 
             $("#Rowmapa").mousedown(function(event)
-            {                    
+            {
                     if(event.which == 3)
-                    {                        
+                    {
                        if(Rectangulo == null)
                        {
-                            $.Notification.autoHideNotify('error', 'top right', 'No se pudo añadir el consumidor dado que aun no se ha limitado el mapa.')                                                
+                            $.Notification.autoHideNotify('error', 'top right', 'No se pudo añadir el consumidor dado que aun no se ha limitado el mapa.')
                        }
                        else
                        {
@@ -222,34 +214,34 @@ $( document ).ready(function()
             });
 
 
-  	/* Eventos del mapa */            
+  	/* Eventos del mapa */
             /*Recolección de eventos de las acciones del mapa */
             $('#LimitarMapa').click(function(event)
             {
                 if(Rectangulo == null)
-                {                    
+                {
                     try
                     {
-                        DelimitarBordes("");  
-                        $.Notification.autoHideNotify('success', 'top right', 'Se ha limitado el mapa exitosamente.')                                                
-                    }                                  
+                        DelimitarBordes("");
+                        $.Notification.autoHideNotify('success', 'top right', 'Se ha limitado el mapa exitosamente.')
+                    }
                     catch(e)
                     {
-                        $.Notification.autoHideNotify('warning', 'top right', 'Espere a que se cargue el mapa.')      
+                        $.Notification.autoHideNotify('warning', 'top right', 'Espere a que se cargue el mapa.')
                     }
                 }
                 else
                 {
-                     $.Notification.autoHideNotify('warning', 'top right', 'El mapa ya ha sido limitado previamente');                     
+                     $.Notification.autoHideNotify('warning', 'top right', 'El mapa ya ha sido limitado previamente');
                 }
                 $("html, body").animate({ scrollTop: $("#myID").scrollTop() }, 1000);
             });
 
 
             $('#DeslimitarMapa').click(function(event)
-            {                                              
+            {
                 if(Rectangulo != null)
-                {                    
+                {
                       if(!Proyecciones[ProyeccionActiva].MarcadoresCollecion[0])
                       {
                             DelimitarBordes('2');
@@ -263,45 +255,46 @@ $( document ).ready(function()
                 else
                 {
                     $.Notification.autoHideNotify('warning', 'top right', 'El mapa no ha sido limitado aun.');
-                }                
+                }
             });
 
             $('#GuardarEspacioTrabajo').click(function(event)
             {
-                                
-                  GuardarEspacioDeTrabajo(0);                                       
-                  $.Notification.autoHideNotify('success', 'top right', 'Se ha guardado el espacio de trabajo');   
+
+                  GuardarEspacioDeTrabajo(0);
+                  $.Notification.autoHideNotify('success', 'top right', 'Se ha guardado el espacio de trabajo');
                   ActualizarTablaEspaciosDeTrabajo();
             });
 
 
-            
+
 
 
 
             $('#Procesar').click(function(event)
-            {                                              
+            {
                 if(Rectangulo != null)
-                {                    
+                {
                       if(Proyecciones[ProyeccionActiva].MarcadoresCollecion.length >= 6)
                       {
                             if(document.getElementById('potenciasaleatorias').checked)
                             {
-                                  PotenciasAleatorios();    
-                            }                            
-                            Proyecciones[ProyeccionActiva].ElipseDibujada = true;                                          
+                                  PotenciasAleatorios();
+                            }
+                            Proyecciones[ProyeccionActiva].ElipseDibujada = true;
                             if(SwitchActivo('switchcentroseventuales') == true)
                             {
-                                CentrosEventualesDeCarga(1,ProyeccionActiva);                         
+                                CentrosEventualesDeCarga(1,ProyeccionActiva);
                             }
                             else
                             {
-                                CentrosEventualesDeCarga(1,ProyeccionActiva);                         
+                                CentrosEventualesDeCarga(1,ProyeccionActiva);
                                 OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
-                            }                            
-                            if(MostrarTodasProyecciones) {DetectarInterseccion(1);}                           
-                            MapaAImagen(ProyeccionActiva,0);                            
-                            $.Notification.autoHideNotify('success', 'top right', 'El sistema ha calculado la posición optima para la subestación electrica.')                                                
+                            }
+                            if(MostrarTodasProyecciones) {DetectarInterseccion(1);}
+                            MapaAImagen(ProyeccionActiva,0);
+                          $.Notification.autoHideNotify('success', 'top right', 'El sistema ha calculado la posición optima para la subestación electrica.')
+                          Datos_Graficas(Proyecciones, ProyeccionActiva);
 
                       }
                       else
@@ -313,7 +306,7 @@ $( document ).ready(function()
                 {
                     $.Notification.autoHideNotify('warning', 'top right', 'El mapa no ha sido limitado aun.');
                 }
-                  
+
             });
 
             $('#graficamontaña').click(function(event)
@@ -334,13 +327,13 @@ $( document ).ready(function()
 
 
             $('#graficaconsumidores').click(function(event)
-            { 
+            {
                  Datos_Graficas(Proyecciones,ProyeccionActiva);
             });
 
             $('#reporte').click(function(event)
             {
-                  
+
                   GenerarReporte();
             });
 
@@ -353,14 +346,14 @@ $( document ).ready(function()
 
             });
             NavegadorMobil = new RegExp('Android|webOS|iPhone|iPad|'+'BlackBerry|Windows Phone|'  +'Opera Mini|IEMobile|Mobile' ,'i');
-  
+
             if (NavegadorMobil.test(navigator.userAgent))
             {
                     $("#Rowmapa").on("tap", null,function(event)
                     {
                         if(Rectangulo == null)
                         {
-                             $.Notification.autoHideNotify('error', 'top right', 'No se pudo añadir el consumidor dado que aun no se ha limitado el mapa.')                                                
+                             $.Notification.autoHideNotify('error', 'top right', 'No se pudo añadir el consumidor dado que aun no se ha limitado el mapa.')
                         }
                        else
                        {
@@ -371,8 +364,8 @@ $( document ).ready(function()
                        }
                     });
             }
-            
-            $( "#ContenedorEmergente" ).mouseleave(function() 
+
+            $( "#ContenedorEmergente" ).mouseleave(function()
             {
                $(this).hide(1000);
             });
@@ -381,14 +374,14 @@ $( document ).ready(function()
             {
                  GuardarCambiosContenedor();
             });
-            
+
     /* Recolección de controles */
           	DxTexto = document.getElementById('VDx');
             DyTexto = document.getElementById('VDy');
             SigmaXTexto = document.getElementById('VSigmax');
             SigmaYTexto = document.getElementById('VSigmay');
             HxTexto = document.getElementById('VHx');
-            HyTexto = document.getElementById('VHy');                  
+            HyTexto = document.getElementById('VHy');
             AxTexto = document.getElementById('VAx');
             AyTexto = document.getElementById('VAy');
             CxyTexto = document.getElementById('VCxy');
@@ -415,24 +408,24 @@ $( document ).ready(function()
             CEscala = document.getElementById('CEscala');
             CEscalaY = document.getElementById('CEscalaY');
 
-            Altura = (document.getElementById('Rowmapa').clientHeight);             
+            Altura = (document.getElementById('Rowmapa').clientHeight);
 
             Proyecciones.push({MarcadoresCollecion : [],Contador:1,ElipseDibujada : false,Elipse:null,CentrosEventuales : new Array(),EspaciosDeTrabajo : new Array(),EspacioTrabajoContador: 0,Centro : null,CentrosEventualesCoordenadasFisicas : new Array(), XDispersion : 0 ,YDispersion : 0 , XSigma : 0 ,YSigma : 0 ,XExactitud : 0 , YExactitud : 0 , XYCorrelacion : 0, r : 0 , Angulo: 0 , FhiSigma2: 0 , PhiSigma2 : 0, FhiExactitud : 0 ,  PhiExactitud : 0 , FhiRadio : 0 ,  PhiRadio : 0 , XPoint : 0 , YPoint : 0 ,Puntos_X : new Array(),Sumatoria : new Array(),Opciones: {MostrarConsumidores :  true , MostrarCentrosEventuales : true , MostrarElipse : true}});
             Proyecciones.push({MarcadoresCollecion : [],Contador:1,ElipseDibujada : false,Elipse:null,CentrosEventuales : new Array(),EspaciosDeTrabajo : new Array(),EspacioTrabajoContador: 0,Centro : null,CentrosEventualesCoordenadasFisicas : new Array(), XDispersion : 0 ,YDispersion : 0 , XSigma : 0 ,YSigma : 0 ,XExactitud : 0 , YExactitud : 0 , XYCorrelacion : 0, r : 0 , Angulo: 0 , FhiSigma2: 0 , PhiSigma2 : 0, FhiExactitud : 0 ,  PhiExactitud : 0 , FhiRadio : 0 ,  PhiRadio : 0 , XPoint : 0 , YPoint : 0 ,Puntos_X : new Array(),Sumatoria : new Array(),Opciones: {MostrarConsumidores :  true , MostrarCentrosEventuales : true , MostrarElipse : true}});
             Proyecciones.push({MarcadoresCollecion : [],Contador:1,ElipseDibujada : false,Elipse:null,CentrosEventuales : new Array(),EspaciosDeTrabajo : new Array(),EspacioTrabajoContador: 0,Centro : null,CentrosEventualesCoordenadasFisicas : new Array(), XDispersion : 0 ,YDispersion : 0 , XSigma : 0 ,YSigma : 0 ,XExactitud : 0 , YExactitud : 0 , XYCorrelacion : 0, r : 0 , Angulo: 0 , FhiSigma2: 0 , PhiSigma2 : 0, FhiExactitud : 0 ,  PhiExactitud : 0 , FhiRadio : 0 ,  PhiRadio : 0 , XPoint : 0 , YPoint : 0 ,Puntos_X : new Array(),Sumatoria : new Array(),Opciones: {MostrarConsumidores :  true , MostrarCentrosEventuales : true , MostrarElipse : true}});
 
-            Montañas.push("");             
-            Montañas.push("");             
-            Montañas.push("");             
+            Montañas.push("");
+            Montañas.push("");
+            Montañas.push("");
 
-            OpcionesGlobales.push({TodosCentrosCarga : false , TodosCentrosEventuales : false , TodasElipses : true,MostrarLeyenda : true,MostrarPinCiudad : true ,Paso : 0.10,OpacidadBorde: 0.4, OpacidadRelleno:0.35});    
+            OpcionesGlobales.push({TodosCentrosCarga : false , TodosCentrosEventuales : false , TodasElipses : true,MostrarLeyenda : true,MostrarPinCiudad : true ,Paso : 0.10,OpacidadBorde: 0.4, OpacidadRelleno:0.35});
 
   	/* Inicializaciòn del mapa y canvas */
              GenerarMapa();
 
              $('#switchtiemporeal').click(function()
              {
-                  $(this).toggleClass('on');                  
+                  $(this).toggleClass('on');
              });
 
 
@@ -441,14 +434,14 @@ $( document ).ready(function()
                 $(this).toggleClass('on');
                 if(SwitchActivo('switchcentroseventuales') == false)
                 {
-                    OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);                    
-                    Proyecciones[ProyeccionActiva].Opciones.MostrarCentrosEventuales = false; 
+                    OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
+                    Proyecciones[ProyeccionActiva].Opciones.MostrarCentrosEventuales = false;
                 }
                 else
                 {
                    OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                   Proyecciones[ProyeccionActiva].Opciones.MostrarCentrosEventuales = true; 
-                    
+                   Proyecciones[ProyeccionActiva].Opciones.MostrarCentrosEventuales = true;
+
                 }
              });
 
@@ -458,14 +451,14 @@ $( document ).ready(function()
                 $(this).toggleClass('on');
                 if(SwitchActivo('switchcarga') == false)
                 {
-                    OcultarMostrar_Cargas(1,ProyeccionActiva,null);         
-                    Proyecciones[ProyeccionActiva].Opciones.MostrarConsumidores = false;            
+                    OcultarMostrar_Cargas(1,ProyeccionActiva,null);
+                    Proyecciones[ProyeccionActiva].Opciones.MostrarConsumidores = false;
                 }
                 else
                 {
                    OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
-                   Proyecciones[ProyeccionActiva].Opciones.MostrarConsumidores = true;            
-                    
+                   Proyecciones[ProyeccionActiva].Opciones.MostrarConsumidores = true;
+
                 }
              });
 
@@ -475,13 +468,13 @@ $( document ).ready(function()
                 $(this).toggleClass('on');
                 if(SwitchActivo('switchelipse') == false)
                 {
-                    OcultarMostrar_Elipses(1,ProyeccionActiva,null);       
-                    Proyecciones[ProyeccionActiva].Opciones.MostrarElipse = false;                                
+                    OcultarMostrar_Elipses(1,ProyeccionActiva,null);
+                    Proyecciones[ProyeccionActiva].Opciones.MostrarElipse = false;
                 }
                 else
                 {
                    OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);
-                   Proyecciones[ProyeccionActiva].Opciones.MostrarElipse = true;            
+                   Proyecciones[ProyeccionActiva].Opciones.MostrarElipse = true;
                 }
              });
 
@@ -494,18 +487,18 @@ $( document ).ready(function()
                 {
                   if(Rectangulo != null)
                   {
-                      $.Notification.autoHideNotify('success', 'top right', 'Se muestran en pantalla los consumidores encontrados'); 
+                      $.Notification.autoHideNotify('success', 'top right', 'Se muestran en pantalla los consumidores encontrados');
                       MostrarConsumidores(MapaCanvas.getCenter(), MapaCanvas)
-                      VerConsumidores(true); 
-                  } 
+                      VerConsumidores(true);
+                  }
                   else
                   {
                       $.Notification.autoHideNotify('warning', 'top right', 'Para buscar consumidores en la zona es necesario que limite el mapa primero');
-                  }               
-                    
+                  }
+
                 }
                 else
-                {                   
+                {
                    VerConsumidores(false);
                 }
              });
@@ -513,7 +506,7 @@ $( document ).ready(function()
 
 
               $('#VerProyeccion1').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
@@ -533,27 +526,29 @@ $( document ).ready(function()
 
                                if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
+                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 0;                                            
+                            {
+                              ProyeccionActiva = 0;
                               if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
                               else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
-                            }                             
-                            
+                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}
+                            }
+
                             document.getElementById("botonactiva").innerHTML = 'Proyeción 1 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                             document.getElementById("sidebartexto").innerHTML = "Proyección 1";
                             ActualizarTablaEspaciosDeTrabajo();
-                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 1 se encuentra activa');                                       
+                            Datos_Graficas(Proyecciones, ProyeccionActiva);
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 1 se encuentra activa');
+                            actualizar_reportes();
 
                 });
 
 
 
                 $('#VerProyeccion2').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
@@ -573,27 +568,30 @@ $( document ).ready(function()
 
                                if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
+                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 1;                                            
+                            {
+                              ProyeccionActiva = 1;
                               if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
                               else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
-                            }          
+                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}
+                            }
                             CopiarProyeccionPrevia(0);
                             document.getElementById("botonactiva").innerHTML = 'Proyeción 2 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                             document.getElementById("sidebartexto").innerHTML = "Proyección 2";
-                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 2 se encuentra activa');   
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 2 se encuentra activa');
                             ActualizarTablaEspaciosDeTrabajo();
+                            Datos_Graficas(Proyecciones, ProyeccionActiva);
+                            actualizar_reportes();
+
 
                 });
 
 
 
                 $('#VerProyeccion3').click(function()
-                 {                                      
+                 {
                             if(SwitchActivo('switchglobal') == false)
                             {
                                OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,null);
@@ -613,18 +611,18 @@ $( document ).ready(function()
 
                                if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
+                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}
                             }
                             else
-                            {                            
-                              ProyeccionActiva = 2;                                            
+                            {
+                              ProyeccionActiva = 2;
                               if(SwitchActivo('switchcarga') == true) OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
                               else if(SwitchActivo('switchcentroseventuales')== true) OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}                                          
+                              else if(SwitchActivo('switchelipse') == true && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(2,ProyeccionActiva,MapaCanvas);}
                             }
                             if(SegundaProyeccionActivada == true)
                             {
-                                CopiarProyeccionPrevia(1);                                                                      
+                                CopiarProyeccionPrevia(1);
                                 document.getElementById("botonactiva").innerHTML = 'Proyeción 3 <span class="m-l-5"><i class=" fa fa-get-pocket"></i></span>';
                                 document.getElementById("sidebartexto").innerHTML = "Proyección 3";
                             }
@@ -635,7 +633,7 @@ $( document ).ready(function()
                                 OcultarMostrar_Elipses(1 , ProyeccionActiva,null);
                                 OcultarMostrar_Cargas(1,ProyeccionActiva,null);
                                 ProyeccionActiva = 1;
-                               
+
 
                                if(Proyecciones[1].Opciones.MostrarConsumidores){ToogleSwitch('carga');}
                                else{ ToogleSwitchFalse('carga');}
@@ -649,11 +647,12 @@ $( document ).ready(function()
 
                                if(SwitchActivo('switchcarga')  == true) OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                                if(SwitchActivo('switchcentroseventuales')  == true) OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}                    
-                        }                            
-                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 3 se encuentra activa');           
+                               if(SwitchActivo('switchelipse') == true  && Proyecciones[ProyeccionActiva].ElipseDibujada == true) { OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);}
+                        }
+                            $.Notification.autoHideNotify('success', 'top right', 'La Proyección 3 se encuentra activa');
                             ActualizarTablaEspaciosDeTrabajo();
-
+                            Datos_Graficas(Proyecciones, ProyeccionActiva);
+                            actualizar_reportes();
                 });
 
 
@@ -665,10 +664,10 @@ $( document ).ready(function()
                      {
                           OcultarMostrar_Cargas(2,ProyeccionActiva,MapaCanvas);
                           OcultarMostrar_CentrosDeCargaEventuales(2,ProyeccionActiva,MapaCanvas);
-                          OcultarMostrar_Elipses(2 , ProyeccionActiva,MapaCanvas);       
+                          OcultarMostrar_Elipses(2 , ProyeccionActiva,MapaCanvas);
                           MostrarTodasProyecciones = true;
                           DetectarInterseccion(1);
-                          ToogleSwitch('todo');      
+                          ToogleSwitch('todo');
                      }
                      else
                      {
@@ -679,12 +678,12 @@ $( document ).ready(function()
                           OcultarMostrar_Cargas(1,ProyeccionActiva,MapaCanvas);
                           OcultarMostrar_Elipses(1,ProyeccionActiva,MapaCanvas);
                           OcultarMostrar_CentrosDeCargaEventuales(1,ProyeccionActiva,MapaCanvas);
-                                                    
+
                           MostrarTodasProyecciones = false;
                      }
                 });
              $('#switchcargaglobal').click(function()
-             {  
+             {
                      $('#switchcargaglobal').toggleClass('on');
                      if(SwitchActivo('switchcargaglobal') == true)
                      {
@@ -698,17 +697,17 @@ $( document ).ready(function()
 
 
                         ToogleSwitchFalse('ceglobal');
-                        ToogleSwitchFalse('elipseglobal');                            
-                        ToogleSwitchFalse('ocultartodo');                            
-                        ToogleSwitchFalse('todo');      
+                        ToogleSwitchFalse('elipseglobal');
+                        ToogleSwitchFalse('ocultartodo');
+                        ToogleSwitchFalse('todo');
 
-                        //ActualizarLeyenda();   
-                     }                     
+                        //ActualizarLeyenda();
+                     }
              });
 
 
              $('#switchceglobal').click(function()
-             {  
+             {
                      $('#switchceglobal').toggleClass('on');
                      if(SwitchActivo('switchceglobal') == true)
                      {
@@ -721,18 +720,18 @@ $( document ).ready(function()
                         OpcionesGlobales[0].TodasElipses = false;
 
 
-                        
-                        ToogleSwitchFalse('elipseglobal');                            
-                        ToogleSwitchFalse('ocultartodo');                            
-                        ToogleSwitchFalse('todo');      
+
+                        ToogleSwitchFalse('elipseglobal');
+                        ToogleSwitchFalse('ocultartodo');
+                        ToogleSwitchFalse('todo');
                         ToogleSwitchFalse('cargaglobal');
-                        //ActualizarLeyenda();    
-                     }                     
+                        //ActualizarLeyenda();
+                     }
              });
 
 
-             $('#switchelipseglobal').click(function()              
-             {  
+             $('#switchelipseglobal').click(function()
+             {
                  $('#switchelipseglobal').toggleClass('on');
                  if(SwitchActivo('switchelipseglobal') == true)
                  {
@@ -745,25 +744,25 @@ $( document ).ready(function()
                        OpcionesGlobales[0].TodosCentrosEventuales = false;
                        OpcionesGlobales[0].TodasElipses = true;
 
-                        
-                        ToogleSwitchFalse('ocultartodo');                            
-                        ToogleSwitchFalse('todo');      
+
+                        ToogleSwitchFalse('ocultartodo');
+                        ToogleSwitchFalse('todo');
                         ToogleSwitchFalse('cargaglobal');
                         ToogleSwitchFalse('ceglobal');
-                       //ActualizarLeyenda();    
-                 }                 
+                       //ActualizarLeyenda();
+                 }
              });
 
 
                  $('#switchtodo').click(function()
-                 { 
+                 {
                      $('#switchtodo').toggleClass('on');
                      if(SwitchActivo('switchtodo') == true)
                      {
                             ToogleSwitchFalse('cargaglobal');
                             ToogleSwitchFalse('ceglobal');
-                            ToogleSwitchFalse('elipseglobal');                            
-                            ToogleSwitchFalse('ocultartodo');                            
+                            ToogleSwitchFalse('elipseglobal');
+                            ToogleSwitchFalse('ocultartodo');
 
                             ToogleSwitch('carga');
                             ToogleSwitch('centroseventuales');
@@ -777,13 +776,13 @@ $( document ).ready(function()
                             OpcionesGlobales[0].TodosCentrosCarga = false;
                             OpcionesGlobales[0].TodosCentrosEventuales = false;
                             OpcionesGlobales[0].TodasElipses = true;
-                    //      ActualizarLeyenda();      
-                     }                     
+                    //      ActualizarLeyenda();
+                     }
                  });
 
 
                  $('#switchocultartodo').click(function()
-                 { 
+                 {
                      $('#switchocultartodo').toggleClass('on');
                      if(SwitchActivo('switchocultartodo') == true)
                      {
@@ -792,26 +791,26 @@ $( document ).ready(function()
                         OcultarMostrar_Elipses(2, ProyeccionActiva, null);
                         ToogleSwitchFalse('elipseglobal');
                         ToogleSwitchFalse('ceglobal');
-                        ToogleSwitchFalse('cargaglobal');                            
+                        ToogleSwitchFalse('cargaglobal');
                         OpcionesGlobales[0].TodasElipses = false;
                         OpcionesGlobales[0].TodosCentrosCarga = false;
                         OpcionesGlobales[0].TodosCentrosEventuales = false;
 
                         ToogleSwitchFalse('cargaglobal');
                         ToogleSwitchFalse('ceglobal');
-                        ToogleSwitchFalse('elipseglobal');                            
+                        ToogleSwitchFalse('elipseglobal');
                         ToogleSwitchFalse('todo');
-                        
 
-                        //ActualizarLeyenda();       
-                     }                     
+
+                        //ActualizarLeyenda();
+                     }
                  });
 
-             $('#switchtiemporeal').toggleClass('on');             
+             $('#switchtiemporeal').toggleClass('on');
              $('#switchcarga').toggleClass('on');
              $('#switchelipse').toggleClass('on');
              $('#switchcentroseventuales').toggleClass('on');
-             $("#tablaconsumidores").footable();   
+             $("#tablaconsumidores").footable();
              $("#tablaespaciostrabajo").footable();
              $("#tablapotencia").footable();
              $("#range_01").ionRangeSlider();
@@ -819,8 +818,8 @@ $( document ).ready(function()
              $("#range_03").ionRangeSlider();
              $('#cpicker1').colorpicker();
              $('#cpicker2').colorpicker();
-             $('#cpicker3').colorpicker();             
-             ImprimirVariables(0);                          
+             $('#cpicker3').colorpicker();
+             ImprimirVariables(0);
 
             $('#range_01').change(function(event){
                 OpcionesGlobales[0].Paso = parseFloat($('#range_01').val()) / 100;
@@ -832,17 +831,6 @@ $( document ).ready(function()
 
             $('#range_03').change(function (event){
                 OpcionesGlobales[0].OpacidadRelleno = parseFloat($('#range_03').val()) / 100;
-            });
-
-            $(window).resize(function () {
-                var body = document.body, html = document.documentElement;
-                var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight) - 200;
-                document.getElementById('Rowmapa').style.height = height + 'px';
-
-                document.getElementById('montaña1').style.height = (height - 108) + 'px';
-                document.getElementById('montaña2').style.height = (height - 108) + 'px';
-                document.getElementById('montaña3').style.height = (height - 108) + 'px';    
-
             });
 
 
@@ -922,12 +910,12 @@ function ProcessExcel(data) {
             });
 
         }
-        swal("Aviso", "La carga masiva se realizo exitosamente.", "success");        
+        swal("Aviso", "La carga masiva se realizo exitosamente.", "success");
     }
     else {
         swal("Error", "Ubica todos los consumidores en el mapa.", "error");
     }
-    
+
 
 }
 
@@ -935,9 +923,9 @@ function MostrarOcultarContenedor(Contenedor)
 {
 	if(Activo != Contenedor)
 	{
-	    $(("#"+Activo)).hide(100);
-	    $(("#"+Contenedor)).show(100 );
-	}		
+	    $(("#"+Activo)).hide();
+	    $(("#"+Contenedor)).show( );
+	}
 
 }
 
@@ -971,8 +959,16 @@ function ToogleSwitchFalse(SwitchID)
     {
         $('#switch'+SwitchID).toggleClass('on');
     }
-     
+
 }
 
-
-
+function actualizar_reportes() {
+    ActualizarTabla();
+    ActualizarTablaCentrosEventuales();
+    ActualizarInformacionProyeccionActual()
+    ActualizarTablaPotencias();    
+    document.getElementById('cargasproyeccion').innerHTML = Proyecciones[ProyeccionActiva].MarcadoresCollecion.length + " / 10";
+    document.getElementById('centrosproyeccion').innerHTML = Proyecciones[ProyeccionActiva].CentrosEventuales.length + " / 24";
+    document.getElementById('Radiox').innerHTML = Math.trunc(Proyecciones[ProyeccionActiva].FhiRadio);
+    document.getElementById('Radioy').innerHTML = Math.trunc(Proyecciones[ProyeccionActiva].PhiRadio);
+}
