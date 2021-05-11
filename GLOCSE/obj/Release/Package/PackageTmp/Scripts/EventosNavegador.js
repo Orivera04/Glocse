@@ -887,6 +887,17 @@ $( document ).ready(function()
             swal("Error", "Por favor sube un archivo excel valido.", "error");
         }
     });
+
+    $('#tooglelizador').click(function (event) {
+        ZoomNivel = MapaCanvas.getZoom();
+        if ($('#wrapper').hasClass("enlarged")) {
+            MapaCanvas.setZoom(ZoomNivel + 1);
+        }
+        else {
+            MapaCanvas.setZoom(ZoomNivel - 1);
+        }
+        
+    });
 });
 
 

@@ -151,11 +151,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProyectoController.cs" />
     <Compile Include="Controllers\SimuladorController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BBDDOperaciones.cs" />
+    <Compile Include="Models\Proyecto.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +174,7 @@
     <Content Include="Content\icons.css" />
     <Content Include="Content\ion.rangeSlider.css" />
     <Content Include="Content\ion.rangeSlider.skinFlat.css" />
+    <Content Include="Content\login.css" />
     <Content Include="Content\pages.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\typicons.css" />
@@ -231,7 +237,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\BBDD\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\fontawesome-webfont.eot" />
@@ -267,10 +272,14 @@
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Views\Shared\UsuariosLayout.cshtml" />
-    <Content Include="Views\Usuarios\Login.cshtml" />
-    <Content Include="Views\Usuarios\Registro.cshtml" />
     <None Include="Properties\PublishProfiles\GLOCSE20210125195650 - Web Deploy.pubxml" />
+    <Content Include="Views\Login\index.cshtml" />
+    <Content Include="Views\Proyecto\index.cshtml" />
+    <Content Include="Views\Usuario\index.cshtml" />
+    <Content Include="Views\Proyecto\edit.cshtml" />
+    <Content Include="Views\Proyecto\new.cshtml" />
+    <Content Include="Views\Usuario\edit.cshtml" />
+    <Content Include="Views\Usuario\new.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

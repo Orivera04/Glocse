@@ -1,2 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<parameters />
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Cadena de conexión que usa la aplicación en web.config para obtener acceso a la base de datos." defaultValue="Data Source=glocse.cvqrnzci6iiw.us-east-2.rds.amazonaws.com;Initial Catalog=glocse;  Integrated Security=False; User ID=admin; Password=QGF58()LP; MultipleActiveResultSets=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\river\\OneDrive\\Documentos\\Github\\Glocse\\GLOCSE\\obj\\Release\\Package\\PackageTmp\\Views\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\river\\OneDrive\\Documentos\\Github\\Glocse\\GLOCSE\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

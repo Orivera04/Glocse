@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "GLOCSE - Subestaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="wrapper">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="text-center">
+                <a href="#" class="logo"><i class="icon-magnet icon-c-logo"></i><span>GL<i class="md md-album"></i>CSE</span></a>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="">
+                    <div class="pull-left">
+                        <button id="tooglelizador" class="button-menu-mobile open-left waves-effect waves-light">
+                            <i class="md md-menu"></i>
+                        </button>
+                        <span style="color:white; font-weight:bold;"> @Session["usuario"] </span>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <li class="dropdown top-menu-item-xs">
+                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="data:image/png;base64,@Session["imagen"]" alt="user-img" class="img-circle"> </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@this.Url.Action("Index", "Login", null)"><i class="ti-power-off m-r-10 text-danger"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="left side-menu" style="position: fixed;">
+        <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                <ul>
+                    <li class="has_sub">
+                        <a href="@this.Url.Action("index", "Proyecto", null)" id="sb_googlemaps" class="waves-effect"><i class=" icon-notebook"></i> <span> Proyectos </span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="@this.Url.Action("index", "Usuario", null)" id="sb_googlemaps" class="waves-effect"><i class=" icon-user"></i> <span> Usuarios </span></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+
+    <form action="@this.Url.Action("crear_usuario", "Usuario", null)" method="post" enctype="multipart/form-data" class="login100-form validate-form">
+
+        <div class="content-page">
+
+            <div class="content" style="padding-bottom: 0px;">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-sm-12">
+                            <div class="card-box">
+                                <h4 class="m-t-0 header-title"><b>Ingresa la información del usuario</b></h4>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Nombre</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Nombre" name="nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Apellido</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Apellido" name="apellido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Usuario</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Usuario" name="usuario" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Contraseña</label>
+                                    <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="Contraseña" name="password" required>
+                                </div>
+                                <div class="form-group text-center">
+                                    <img id="imagen" src=""/>
+                                    <input type="file" class="mt-4" name="imagen" required accept="image/png,image/jpg,image/jpeg" onchange="document.getElementById('imagen').src = window.URL.createObjectURL(this.files[0])" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn-default dropdown-toggle waves-effect waves-light" style="margin-left:20px; padding:10px;">Guardar</button>
+        </div>
+    </form>
+</div>

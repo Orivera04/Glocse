@@ -16,7 +16,7 @@ namespace GLOCSE
             routes.MapRoute(
                 name: "",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Simulador", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Login", action = "Index", id = UrlParameter.Optional }
             );
         }
     }

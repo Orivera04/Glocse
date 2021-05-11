@@ -6,6 +6,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAN299Qva1rkirDUEr64em7gAAAAACAAAAAAAQZgAAAAEAACAAAABjxOgIgqb+ZakxtIX1zVJPqgq8tNRDgum0qscFxWNk8wAAAAAOgAAAAAIAACAAAACLDgCDOWitTnLcBauCzQvcEivWisdjxCT1EfNtckBHo4AAAAC1ryN6dmxmdBd3fwV55OVUA6JHUtmW6Mut2nFi/PHSJ1nZwSZ5ykRwEAsYc6EQKiSS5N1zEasp1MF3dtzzRjbeBq4Tva81gY+XMmyuOXoJbX6KPfMqu9V80cnXHyNLy25I4sH2hRUOav+ybJxHrOtOsR0h4cqehhU/M7Bojx712kAAAADxPEeKAYdqeM/kMFEczPUq5QWv5GkChwRXy3vywLNgFb35ynDCJ07UN6BNzlKdFGqbOppKrNlwHh+oJFZyDHZu</EncryptedPassword>
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAN299Qva1rkirDUEr64em7gAAAAACAAAAAAAQZgAAAAEAACAAAACjfAxgNLST2o0Ws7ikeZLeOb4KqlnUI7+8d32EXmPiFAAAAAAOgAAAAAIAACAAAADNfMcg55kCBwT5MPEtDzQpY4bJRz7uuVhXoeQR1uyAXYAAAAA+zjTbhPLJx5uDRVCcVgzCjvsqp7rd1SkR9tleg458QlYPFgkIGgvZKHq7G7OOsQOte4FeLnKzGs2Co4mL1/dZdY+S2J+Ou4Jf3Uprl0t9s6AnrPWPWrRA+sZnKZr7oDhDEZTgm44bJJeJCc1iEI0dBEkJ8rcH/nTjghVpfY9MjUAAAAAWUfZCrLeapop8In5ZsrrXFt1+oq8W2fbTAYm/Nx6HlnTcKCV1naJUK4KmMyoVm0dtMh6kX2z51r5GoCY2nCDs</EncryptedPassword>
+    <History>True|2021-05-11T07:20:33.5800369Z;True|2021-03-28T16:14:40.1649180-06:00;</History>
   </PropertyGroup>
 </Project>

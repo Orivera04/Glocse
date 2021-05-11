@@ -1,0 +1,108 @@
+﻿@model IEnumerable<GLOCSE.Models.Usuario>
+
+@{
+    ViewBag.Title = "GLOCSE - Subestaciones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div id="wrapper">
+    <div class="topbar">
+        <div class="topbar-left">
+            <div class="text-center">
+                <a href="#" class="logo"><i class="icon-magnet icon-c-logo"></i><span>GL<i class="md md-album"></i>CSE</span></a>
+            </div>
+        </div>
+
+        <div class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="">
+                    <div class="pull-left">
+                        <button id="tooglelizador" class="button-menu-mobile open-left waves-effect waves-light">
+                            <i class="md md-menu"></i>
+                        </button>
+                        <span style="color:white; font-weight:bold;"> @Session["usuario"] </span>
+                        <span class="clearfix"></span>
+                    </div>
+                </div>
+
+                <ul class="nav navbar-nav navbar-right pull-right">
+                    <li class="dropdown top-menu-item-xs">
+                        <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="data:image/png;base64,@Session["imagen"]" alt="user-img" class="img-circle"> </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="@this.Url.Action("Index", "Login", null)"><i class="ti-power-off m-r-10 text-danger"></i>Cerrar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="left side-menu" style="position: fixed;">
+        <div class="sidebar-inner slimscrollleft">
+            <div id="sidebar-menu">
+                <ul>
+                    <li class="has_sub">
+                        <a href="@this.Url.Action("index", "Proyecto", null)" id="sb_googlemaps" class="waves-effect"><i class=" icon-notebook"></i> <span> Proyectos </span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a href="@this.Url.Action("index", "Usuario", null)" id="sb_googlemaps" class="waves-effect"><i class=" icon-user"></i> <span> Usuarios </span></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="content-page">
+
+        <div class="content" style="padding-bottom: 0px;">
+            <div class="container">
+                <div class="btn-group pull-right m-t-15" style="margin-bottom:20px;">
+                    <a href="@this.Url.Action("new", "Usuario", null)" class="btn btn-default dropdown-toggle waves-effect waves-light">Crear Usuario</a>
+                </div>
+                <div class="row">
+
+                    <div class="col-sm-12">
+                        <div class="card-box">
+                            <h4 class="m-t-0 header-title"><b>Tabla de usuarios</b></h4>
+                            <table id="tablaconsumidores" class="table table-striped toggle-circle m-b-0 footable-loaded footable" data-page-size="14">
+                                <thead>
+                                    <tr>
+                                        <th data-toggle="true" class="footable-sortable">Usuario<span class="footable-sort-indicator"></span></th>
+                                        <th data-toggle="true" class="footable-sortable">Nombre<span class="footable-sort-indicator"></span></th>
+                                        <th data-hide="phone" class="footable-sortable">Editar<span class="footable-sort-indicator"></span></th>
+                                        <th data-hide="phone" class="footable-sortable">Eliminar<span class="footable-sort-indicator"></span></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody id="potencias">
+                                    @foreach (var item in Model)
+                                    {
+                                    <tr>
+                                        <td>@item.usuario</td>
+                                        <td>@item.nombre</td>
+                                        <td>
+                                            <a href="@this.Url.Action("edit", "Usuario", new { id = item.id })" class="btn btn-default dropdown-toggle waves-effect waves-light">Editar</a>
+                                        </td>
+                                        <td>
+                                            <a href="@this.Url.Action("delete", "Usuario", new { id = item.id })" class="btn btn-danger dropdown-toggle waves-effect waves-light">Eliminar</a>
+                                        </td>                                      
+                                    </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

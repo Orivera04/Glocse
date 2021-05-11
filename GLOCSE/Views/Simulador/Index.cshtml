@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="">
                     <div class="pull-left">
-                        <button class="button-menu-mobile open-left waves-effect waves-light">
+                        <button id="tooglelizador" class="button-menu-mobile open-left waves-effect waves-light">
                             <i class="md md-menu"></i>
                         </button>
                         <span class="clearfix"></span>
@@ -69,11 +69,10 @@
                             <a href="#" class="right-bar-toggle waves-effect waves-light"><i class="icon-settings"></i></a>
                         </li>
                         <li class="dropdown top-menu-item-xs">
-                            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="https://ih0.redbubble.net/image.120558680.3136/flat,800x800,075,f.u3.jpg" alt="user-img" class="img-circle"> </a>
+                            <a href="" class="dropdown-toggle profile waves-effect waves-light" data-toggle="dropdown" aria-expanded="true"><img src="data:image/png;base64,@Session["imagen"]" alt="user-img" class="img-circle"> </a>
                             <ul class="dropdown-menu">
-                                <li><a href="javascript:void(0)"><i class="ti-settings m-r-10 text-custom"></i> Configuración</a></li>
-                                <li class="divider"></li>
-                                <li><a href="javascript:void(0)"><i class="ti-power-off m-r-10 text-danger"></i>Cerrar Sesión</a></li>
+                                <li><a href="@this.Url.Action("Index", "Proyecto", null)"><i class="ti-back-left m-r-10 text-primary"></i>Regresar a proyectos</a></li>
+                                <li><a href="@this.Url.Action("Index", "Login", null)"><i class="ti-power-off m-r-10 text-danger"></i>Cerrar Sesión</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -142,7 +141,7 @@
                         </div>
 
                         <h4 class="page-title">Proyecto</h4>
-                        <p class="text-muted page-title-alt">Subestación Electrica de Nandaime</p>
+                        <p class="text-muted page-title-alt">@ViewBag.nombre</p>
                     </div>
                 </div>
 
