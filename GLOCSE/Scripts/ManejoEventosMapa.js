@@ -17,6 +17,8 @@ function GenerarMapa()
             scaleControl: true,
         });
 
+
+ 
     var Ubicacion = document.getElementById('BusquedaLugar');
     var CajaDeBusqueda = new google.maps.places.SearchBox(Ubicacion);
 
@@ -133,6 +135,7 @@ function GenerarMapa()
     document.getElementById('montaña2').style.height = (height - 108) + 'px';
     document.getElementById('montaña3').style.height = (height - 108) + 'px';
     $('.tabs_mapa').show();
+    MapaCanvas.addListener('tilesloaded', function () { CargarMapa(); })    
 }
 
 /* Bloque la pantalla para que el mapa no se pueda mover */
@@ -335,7 +338,7 @@ function AñadirMarcadorMapa(Coordenadas, MapaCanvas) {
             })
 
         var Horas = OperacionesTabla(2, null);
-        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({ Titulo: Alfabeto[Proyecciones[ProyeccionActiva].Contador - 1] + (ProyeccionActiva + 1).toString(), Categoria: "1", Marcador: Marcador, Horas, X: RetornarCordenada(Marcador).x, Y: Math.abs((RetornarCordenada(Marcador).y) - Altura), Posicion: Proyecciones[ProyeccionActiva].Contador, Proyeccion: ProyeccionActiva });
+        Proyecciones[ProyeccionActiva].MarcadoresCollecion.push({ Titulo: Alfabeto[Proyecciones[ProyeccionActiva].Contador - 1] + (ProyeccionActiva + 1).toString(), Categoria: "1", Marcador: Marcador, Horas, X: RetornarCordenada(Marcador).x, Y: Math.abs((RetornarCordenada(Marcador).y) - Altura), Posicion: Proyecciones[ProyeccionActiva].Contador, Proyeccion: ProyeccionActiva, Latitud: Marcador.getPosition().lat(), Longitud: Marcador.getPosition().lng() });
         Proyecciones[ProyeccionActiva].Contador++;
 
         $.getJSON("https://maps.googleapis.com/maps/api/geocode/json?latlng=" + Marcador.getPosition().lat() + ",+" + Marcador.getPosition().lng() + "&key=" + API_KEY, Geolocalizacion);
@@ -1646,4 +1649,80 @@ function RestaurarDatosJSON(JSONRestaurar) {
     });
     ProyeccionActiva = 0;
     ActualizarTablaEspaciosDeTrabajo();
+}
+
+function CargarMapa() {
+    var LatitudCentro = $("#centro_latitud").val(),
+        LongitudCentro = $("#centro_longitud").val(),
+        PotenciasAleatorias = $("#potencias_aleatorias").val(),
+        IntervaloPoligono = $("#intervalo_poligono").val(),
+        OpacidadBorde = $("#opacidad_borde").val(),
+        OpacidadRelleno = $("#opacidad_relleno").val();
+
+
+    $("#range_01").val(10);
+    $("#range_02").val(10);
+    $("#range_03").val(10);
+
+    if (LatitudCentro != "" && LatitudCentro != undefined) {
+        MapaCanvas.setCenter({ lat: parseFloat(LatitudCentro), lng: parseFloat(LongitudCentro) });
+        var isTrueSet = (PotenciasAleatorias == 'True');
+        $("#potenciasaleatorias").prop("checked", isTrueSet);
+
+        var instance1 = $("#range_01").data("ionRangeSlider");
+        instance1.update({
+            from: IntervaloPoligono
+        });
+
+        var instance2 = $("#range_02").data("ionRangeSlider");
+        instance2.update({
+            from: OpacidadBorde
+        });
+
+        var instance3 = $("#range_03").data("ionRangeSlider");
+        instance3.update({
+            from: OpacidadRelleno
+        });
+
+        var proyecion_1 = JSON.parse($("#proyeccion_1").val());
+        var proyecion_2 = JSON.parse($("#proyeccion_2").val());
+        var proyecion_3 = JSON.parse($("#proyeccion_3").val());
+
+        DelimitarBordes("");
+
+        OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
+        OcultarMostrar_Elipses(1, ProyeccionActiva, null);
+        OcultarMostrar_Cargas(1, ProyeccionActiva, null);
+        ProyeccionActiva = 0;
+
+        proyecion_1.forEach(function (entry) {
+            var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
+            AñadirMarcadorMapa(Punto, MapaCanvas);
+        });
+
+
+        OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
+        OcultarMostrar_Elipses(1, ProyeccionActiva, null);
+        OcultarMostrar_Cargas(1, ProyeccionActiva, null);
+        ProyeccionActiva = 1;
+
+        proyecion_2.forEach(function (entry) {
+            var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
+            AñadirMarcadorMapa(Punto, MapaCanvas);
+        });
+
+        OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
+        OcultarMostrar_Elipses(1, ProyeccionActiva, null);
+        OcultarMostrar_Cargas(1, ProyeccionActiva, null);
+        ProyeccionActiva = 2;
+
+        proyecion_3.forEach(function (entry) {
+            var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
+            AñadirMarcadorMapa(Punto, MapaCanvas);
+        });       
+        SegundaProyeccionActivada = true;
+        TerceraProyeccionActivada = true;
+        $("#VerProyeccion1").trigger("click");
+    }
+
 }

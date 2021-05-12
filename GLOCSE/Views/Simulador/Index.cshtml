@@ -40,7 +40,7 @@
 
                                 <!--     *************************************************     ID PARA PIN DE PRUEBA  ****************************************************************************************************-->
                                 <li id="PinDePrueba"><a href="#"><image src='https://k61.kn3.net/1/A/0/5/4/3/DFB.png' class="thumb-sm"></image>Pin de prueba</a></li>
-                                <li><a href="#"><image src='https://k61.kn3.net/8/2/2/4/9/C/A35.png' class="thumb-sm"></image>Guadar proyecto</a></li>
+                                <li id="guardar_proyecto"><a href="#"><image src='https://k61.kn3.net/8/2/2/4/9/C/A35.png' class="thumb-sm"></image>Guadar proyecto</a></li>
                                 <!--     *************************************************     ID PARA GEOLOCALIZACION ****************************************************************************************************-->
                                 <li id="Geolocalizacion"><a href="#"><image src='https://k61.kn3.net/2/7/2/C/9/8/8EA.png' class="thumb-sm"></image>Geolocalización</a></li>
                                 <li><a href="@Url.Action("Plantilla","Simulador")"><image src='https://i.imgur.com/MEmXO6w.png' class="thumb-sm"></image>Descargar Plantilla Carga Masiva</a></li>
@@ -49,6 +49,16 @@
                             </ul>
                         </li>
                     </ul>
+
+                    <input type="hidden" id="centro_latitud" value="@ViewBag.latitud" />
+                    <input type="hidden" id="centro_longitud" value="@ViewBag.longitud" />
+                    <input type="hidden" id="potencias_aleatorias" value="@ViewBag.potencias_aleatorias" />
+                    <input type="hidden" id="intervalo_poligono" value="@ViewBag.intervalo_poligono" />
+                    <input type="hidden" id="opacidad_borde" value="@ViewBag.opacidad_borde" />
+                    <input type="hidden" id="opacidad_relleno" value="@ViewBag.opacidad_relleno" />
+                    <input type="hidden" id="proyeccion_1" value="@ViewBag.proyeccion_1" />
+                    <input type="hidden" id="proyeccion_2" value="@ViewBag.proyeccion_2" />
+                    <input type="hidden" id="proyeccion_3" value="@ViewBag.proyeccion_3" />
 
                     <form class="navbar-left app-search pull-left hidden-xs" onsubmit="return false;">
                         <input id="BusquedaLugar" type="text" placeholder="Lugar / Coordenada" class="form-control">
@@ -112,6 +122,9 @@
 
                     <li class="has_sub">
                         <a id="sb_configuracion" href="javascript:void(0);" class="waves-effect"><i class=" icon-settings"></i><span> Configuración</span></a>
+                    </li>
+                    <li class="has_sub">
+                        <a id="sb_configuracion" href="@Url.Action("Manual","Simulador")" class="waves-effect"><i class=" icon-docs"></i><span> Manual</span></a>
                     </li>
                 </ul>
                 <div class="clearfix"></div>

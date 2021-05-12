@@ -95,11 +95,17 @@ namespace GLOCSE.Controllers
         public ActionResult Delete(int id)
         {
             string query = "delete  from proyecto WHERE id = @id";
+            string query2 = "delete  from proyecto_detalle WHERE proyecto_id = @id";
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
+
+                SqlCommand command2 = new SqlCommand(query2, connection);
+                command2.Parameters.AddWithValue("@id", id);
+
                 connection.Open();
+                command2.ExecuteNonQuery();
                 command.ExecuteNonQuery();
                 return RedirectToAction("Index", "Proyecto", null);
             }

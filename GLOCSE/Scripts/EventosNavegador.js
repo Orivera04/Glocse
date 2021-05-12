@@ -79,7 +79,35 @@ const API_KEY = 'AIzaSyArDK0WfiSl45XvXXIfvAj7RDvt-JUBsXU';
 $( document ).ready(function()
 {
 
-  	/* Eventos del menu lateral */
+/* Eventos del menu lateral */
+
+
+    $("#guardar_proyecto").click(function () {
+        primera_proyeccion = JSON.stringify(Proyecciones[0].MarcadoresCollecion.map(u => ({ Titulo: u.Titulo, Categoria: u.Categoria, Horas: u.Horas, marcador_id: u.Posicion, Proyeccion_ID: u.Proyeccion, Latitud: u.Marcador.getPosition().lat(), Longitud: u.Marcador.getPosition().lng()})));
+        segunda_proyeccion = JSON.stringify(Proyecciones[1].MarcadoresCollecion.map(u => ({ Titulo: u.Titulo, Categoria: u.Categoria, Horas: u.Horas, marcador_id: u.Posicion, Proyeccion_ID: u.Proyeccion, Latitud: u.Marcador.getPosition().lat(), Longitud: u.Marcador.getPosition().lng()})));
+        tercera_proyeccion = JSON.stringify(Proyecciones[2].MarcadoresCollecion.map(u => ({ Titulo: u.Titulo, Categoria: u.Categoria, Horas: u.Horas, marcador_id: u.Posicion, Proyeccion_ID: u.Proyeccion, Latitud: u.Marcador.getPosition().lat(), Longitud: u.Marcador.getPosition().lng()})));
+        $.LoadingOverlay("show");
+
+                $.ajax({
+                    type: "POST",
+                    url: '../GuardarProyecto',
+                    data: {
+                        proyeccion_1: primera_proyeccion, proyeccion_2: segunda_proyeccion, proyeccion_3: tercera_proyeccion,
+                        centro_latitud: MapaCanvas.getCenter().lat(), centro_longitud: MapaCanvas.getCenter().lng(), PotenciasAleatorias: $("#potenciasaleatorias").is(":checked"),
+                        intervalo_poligono: $("#range_01").val(), opacidad_borde: $("#range_02").val(), opacidad_relleno: $("#range_03").val()
+                    },
+                    dataType: "json",
+                    success: function () {
+                        $.LoadingOverlay("hide");
+                        swal("Exito", "Proyecto guardado con exito.", "success");
+                    },
+                    error: function (e) {
+                        $.LoadingOverlay("hide");
+                        swal("error", "Ocurrio un error al guardar los datos", "error");
+                    }
+                });  
+            });
+
             $( "#sb_googlemaps" ).click(function()
             {
                 MostrarOcultarContenedor('containermapa');
