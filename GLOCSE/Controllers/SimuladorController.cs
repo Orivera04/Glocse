@@ -14,6 +14,7 @@ namespace GLOCSE.Controllers
 {
     public class SimuladorController : Controller
     {
+        [HandleError]
         public ActionResult Index(int id)
         {
             ViewBag.Titulo = "GLOCSE - Subestación";
@@ -21,6 +22,10 @@ namespace GLOCSE.Controllers
             string proyeccion_1 = "SELECT * FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 1";
             string proyeccion_2 = "SELECT * FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 2";
             string proyeccion_3 = "SELECT * FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 3";
+
+            string horas1 = "select * from marcador_detalle where proyecto_detalle_id in (SELECT id FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 1)";
+            string horas2 = "select * from marcador_detalle where proyecto_detalle_id in (SELECT id FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 2)";
+            string horas3 = "select * from marcador_detalle where proyecto_detalle_id in (SELECT id FROM proyecto_detalle where proyecto_id = @id and proyeccion_id = 3)";
 
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
@@ -106,9 +111,76 @@ namespace GLOCSE.Controllers
                             });
                         }
                     }
+
+                    /* horas Proyeccion  1 */
+                    SqlCommand proyeccion_5_comando = new SqlCommand(horas1, connection);
+                    proyeccion_5_comando.Parameters.AddWithValue("@id", id);
+                    ArrayList objs5 = new ArrayList();
+                    SqlDataReader reader5 = proyeccion_5_comando.ExecuteReader();
+                    if (reader5.HasRows)
+                    {
+                        while (reader5.Read())
+                        {
+                            objs5.Add(new
+                            {
+
+                                hora = reader5["hora"],
+                                potencia= reader5["potencia"],                                
+                                proyeccion_id = 1
+
+                            });
+                        }
+                    }
+
+
+
+                    /* horas Proyeccion  2 */
+                    SqlCommand proyeccion_6_comando = new SqlCommand(horas2, connection);
+                    proyeccion_6_comando.Parameters.AddWithValue("@id", id);
+                    ArrayList objs6 = new ArrayList();
+                    SqlDataReader reader6 = proyeccion_6_comando.ExecuteReader();
+                    if (reader6.HasRows)
+                    {
+                        while (reader6.Read())
+                        {
+                            objs6.Add(new
+                            {
+
+                                hora = reader6["hora"],
+                                potencia = reader6["potencia"],
+                                proyeccion_id = 2
+
+                            });
+                        }
+
+                    }
+
+                    /* horas Proyeccion  3 */
+                    SqlCommand proyeccion_7_comando = new SqlCommand(horas3, connection);
+                    proyeccion_7_comando.Parameters.AddWithValue("@id", id);
+                    ArrayList objs7 = new ArrayList();
+                    SqlDataReader reader7 = proyeccion_7_comando.ExecuteReader();
+                    if (reader7.HasRows)
+                    {
+                        while (reader7.Read())
+                        {
+                            objs7.Add(new
+                            {
+
+                                hora = reader7["hora"],
+                                potencia = reader7["potencia"],
+                                proyeccion_id = 3
+
+                            });
+                        }
+
+                    }
                     ViewBag.proyeccion_1 = JsonConvert.SerializeObject(objs1);
                     ViewBag.proyeccion_2 = JsonConvert.SerializeObject(objs2);
                     ViewBag.proyeccion_3 = JsonConvert.SerializeObject(objs3);
+                    ViewBag.horas_1 = JsonConvert.SerializeObject(objs5);
+                    ViewBag.horas_2 = JsonConvert.SerializeObject(objs6);
+                    ViewBag.horas_3 = JsonConvert.SerializeObject(objs7);
 
                 }
             }
@@ -182,17 +254,18 @@ namespace GLOCSE.Controllers
                     command4.Parameters.AddWithValue("@proyeccion_id", proyeccion_id);
                     command4.ExecuteNonQuery();
 
-                    int hora = 0;
+                    int hora = 1;
 
-                                            /*
-                        foreach (var horas in marcador.Horas)
+
+                    foreach (var horas in marcador.Horas)
                         {
-                            SqlCommand command5 = new SqlCommand(query_insert_horas, connection);
-                            command5.Parameters.AddWithValue("@hora", hora);
+                        SqlCommand command5 = new SqlCommand(query_insert_horas, connection);
+                        command5.Parameters.AddWithValue("@hora", hora);
                             command5.Parameters.AddWithValue("@potencia", horas.Value);
                             command5.ExecuteNonQuery();
+                        hora++;
                         }
-                        */
+                       
 
                 }
 
@@ -215,17 +288,18 @@ namespace GLOCSE.Controllers
                     command4.Parameters.AddWithValue("@proyeccion_id", proyeccion_id);
                     command4.ExecuteNonQuery();
 
-                    int hora = 0;
+                    int hora = 1;
 
-                                        /*
+                                        
                      foreach (var horas in marcador.Horas)
                      {
                          SqlCommand command5 = new SqlCommand(query_insert_horas, connection);
                          command5.Parameters.AddWithValue("@hora", hora);
                          command5.Parameters.AddWithValue("@potencia", horas.Value);
                          command5.ExecuteNonQuery();
-                     }
-                     */
+                        hora++;
+                    }
+
 
                 }
 
@@ -248,16 +322,17 @@ namespace GLOCSE.Controllers
                     command4.Parameters.AddWithValue("@proyeccion_id", proyeccion_id);
                     command4.ExecuteNonQuery();
 
-                    int hora = 0;
-                    /*
+                    int hora = 1;
+                    
                     foreach (var horas in marcador.Horas)
                     {
                         SqlCommand command5 = new SqlCommand(query_insert_horas, connection);
                         command5.Parameters.AddWithValue("@hora", hora);
                         command5.Parameters.AddWithValue("@potencia", horas.Value);
                         command5.ExecuteNonQuery();
+                        hora++;
                     }
-                    */
+
                 }
             }
 

@@ -10,6 +10,8 @@ namespace GLOCSE.Controllers
 {
     public class LoginController : Controller
     {
+        [HandleError]
+
         public ActionResult Index()
         {
             return View();

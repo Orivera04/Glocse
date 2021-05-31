@@ -56,11 +56,6 @@
             <div class="clearfix"></div>
         </div>
     </div>
-
-
-
-
-
     <div class="content-page">
 
         <div class="content" style="padding-bottom: 0px;">
@@ -69,6 +64,14 @@
                     <a href="@this.Url.Action("new", "Usuario", null)" class="btn btn-default dropdown-toggle waves-effect waves-light">Crear Usuario</a>
                 </div>
                 <div class="row">
+
+
+                    @if (TempData["Error"] != null)
+                    {
+                        <div style="margin-bottom:10px;">
+                            <span style="color:red;margin-left: 5px;">@TempData["Error"]</span>
+                        </div>
+                    }
 
                     <div class="col-sm-12">
                         <div class="card-box">
@@ -86,16 +89,16 @@
                                 <tbody id="potencias">
                                     @foreach (var item in Model)
                                     {
-                                    <tr>
-                                        <td>@item.usuario</td>
-                                        <td>@item.nombre</td>
-                                        <td>
-                                            <a href="@this.Url.Action("edit", "Usuario", new { id = item.id })" class="btn btn-default dropdown-toggle waves-effect waves-light">Editar</a>
-                                        </td>
-                                        <td>
-                                            <a href="@this.Url.Action("delete", "Usuario", new { id = item.id })" class="btn btn-danger dropdown-toggle waves-effect waves-light">Eliminar</a>
-                                        </td>                                      
-                                    </tr>
+                                        <tr>
+                                            <td>@item.usuario</td>
+                                            <td>@item.nombre</td>
+                                            <td>
+                                                <a href="@this.Url.Action("edit", "Usuario", new { id = item.id })" class="btn btn-default dropdown-toggle waves-effect waves-light">Editar</a>
+                                            </td>
+                                            <td>
+                                                <a href="@this.Url.Action("delete", "Usuario", new { id = item.id })" class="btn btn-danger dropdown-toggle waves-effect waves-light">Eliminar</a>
+                                            </td>
+                                        </tr>
                                     }
                                 </tbody>
                             </table>

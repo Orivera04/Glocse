@@ -12,6 +12,7 @@ namespace GLOCSE.Controllers
 {
     public class UsuarioController : Controller
     {
+        [HandleError]
         // GET: Usuario
         public ActionResult Index()
         {
@@ -71,12 +72,24 @@ namespace GLOCSE.Controllers
         public ActionResult Delete(int id)
         {
             string query = "delete  from usuario WHERE id = @id";
+            string query_existe = "select count(*) from proyecto where id_usuario = @id_usuario";
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@id", id);
                 connection.Open();
-                command.ExecuteNonQuery();
+                SqlCommand command_existe = new SqlCommand(query_existe, connection);
+                command_existe.Parameters.AddWithValue("@id_usuario", id);
+                int resultado = (int)command_existe.ExecuteScalar();
+
+                if (resultado == 0)
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    TempData["Error"] = "No se puede borrar el usuario, existen proyectos asociados.";
+                }
                 return RedirectToAction("Index", "Usuario", null);
             }
         }

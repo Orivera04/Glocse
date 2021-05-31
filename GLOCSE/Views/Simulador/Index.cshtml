@@ -32,8 +32,9 @@
                                 <li id="DeslimitarMapa"><a href="#"><image src='https://k61.kn3.net/0/7/5/9/A/4/E20.png' class="thumb-sm"></image>Quitar Limitación</a></li>
                                 <li id="Procesar"><a href="#"><image src='https://k61.kn3.net/D/5/0/7/3/D/641.png' class="thumb-sm"></image>Procesar Elipse</a></li>
 
-                                <li id="GuardarEspacioTrabajo"><a href="#"><image src='https://k61.kn3.net/9/5/C/8/4/4/80C.png' class="thumb-sm"></image>Guardar Espacios de trabajo</a></li>
-
+                                <!--
+                <li id="GuardarEspacioTrabajo"><a href="#"><image src='https://k61.kn3.net/9/5/C/8/4/4/80C.png' class="thumb-sm"></image>Guardar Espacios de trabajo</a></li>
+                    -->
                                 <li id="graficamontaña"><a href="#"><image src='https://k61.kn3.net/D/9/8/3/6/4/E05.png' class="thumb-sm"></image>Superficie Normal</a></li>
 
                                 <li id="graficaconsumidores"><a href="#"><image src='https://k60.kn3.net/0/7/F/5/7/7/265.png' class="thumb-sm"></image>Generar Graficas de consumidores</a></li>
@@ -59,6 +60,10 @@
                     <input type="hidden" id="proyeccion_1" value="@ViewBag.proyeccion_1" />
                     <input type="hidden" id="proyeccion_2" value="@ViewBag.proyeccion_2" />
                     <input type="hidden" id="proyeccion_3" value="@ViewBag.proyeccion_3" />
+
+                    <input type="hidden" id="horas_1" value="@ViewBag.horas_1" />
+                    <input type="hidden" id="horas_2" value="@ViewBag.horas_2" />
+                    <input type="hidden" id="horas_3" value="@ViewBag.horas_3" />
 
                     <form class="navbar-left app-search pull-left hidden-xs" onsubmit="return false;">
                         <input id="BusquedaLugar" type="text" placeholder="Lugar / Coordenada" class="form-control">
@@ -938,7 +943,7 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-sm-6" id="paddingfaltante">
+                        <div class="col-sm-6 hidden" id="paddingfaltante" style="display:none;">
                             <div class="card-box">
                                 <h4 class="m-t-0 header-title"><b>Espacios de trabajo de la proyección actual</b></h4>
                                 <p class="text-muted m-b-30 font-13">
@@ -959,7 +964,7 @@
 
 
 
-                        <div class="col-sm-6" id="paddingfaltante">
+                        <div class="col-sm-12" id="paddingfaltante">
                             <div class="card-box">
                                 <h4 class="m-t-0 header-title"><b>Marcador de prueba de ubicación de la subestación electrica</b></h4>
                                 <p class="text-muted m-b-30 font-13">

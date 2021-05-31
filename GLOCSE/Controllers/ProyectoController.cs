@@ -11,7 +11,8 @@ namespace GLOCSE.Controllers
 {
     public class ProyectoController : Controller
     {
-        
+        [HandleError]
+
         public ActionResult Index()
         {
             string query = "SELECT * FROM proyecto where id_usuario = @id;";
@@ -96,8 +97,13 @@ namespace GLOCSE.Controllers
         {
             string query = "delete  from proyecto WHERE id = @id";
             string query2 = "delete  from proyecto_detalle WHERE proyecto_id = @id";
+            string query3 = "delete from marcador_detalle where proyecto_detalle_id in (select id from proyecto_detalle WHERE proyecto_id = @id)";
             using (SqlConnection connection = new SqlConnection(ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString))
             {
+                SqlCommand command3 = new SqlCommand(query3, connection);
+                command3.Parameters.AddWithValue("@id", id);
+
+
                 SqlCommand command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("@id", id);
 
@@ -105,6 +111,7 @@ namespace GLOCSE.Controllers
                 command2.Parameters.AddWithValue("@id", id);
 
                 connection.Open();
+                command3.ExecuteNonQuery();
                 command2.ExecuteNonQuery();
                 command.ExecuteNonQuery();
                 return RedirectToAction("Index", "Proyecto", null);

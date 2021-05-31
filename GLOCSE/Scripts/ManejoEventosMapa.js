@@ -1694,10 +1694,13 @@ function CargarMapa() {
         OcultarMostrar_Elipses(1, ProyeccionActiva, null);
         OcultarMostrar_Cargas(1, ProyeccionActiva, null);
         ProyeccionActiva = 0;
-
+        
+        var indice_inicial = 0;
         proyecion_1.forEach(function (entry) {
             var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
             AñadirMarcadorMapa(Punto, MapaCanvas);
+            Proyecciones[0].MarcadoresCollecion[Proyecciones[0].MarcadoresCollecion.length - 1].Horas = JSON.parse($("#horas_1").val()).slice(indice_inicial, indice_inicial + 24).map(function (e) { return e.potencia}) 
+            indice_inicial = indice_inicial + 24;
         });
 
 
@@ -1706,9 +1709,12 @@ function CargarMapa() {
         OcultarMostrar_Cargas(1, ProyeccionActiva, null);
         ProyeccionActiva = 1;
 
+        var indice_inicial = 0;
         proyecion_2.forEach(function (entry) {
             var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
             AñadirMarcadorMapa(Punto, MapaCanvas);
+            Proyecciones[1].MarcadoresCollecion[Proyecciones[1].MarcadoresCollecion.length - 1].Horas = JSON.parse($("#horas_2").val()).slice(indice_inicial, indice_inicial + 24).map(function (e) { return e.potencia })
+            indice_inicial = indice_inicial + 24;
         });
 
         OcultarMostrar_CentrosDeCargaEventuales(1, ProyeccionActiva, null);
@@ -1716,13 +1722,19 @@ function CargarMapa() {
         OcultarMostrar_Cargas(1, ProyeccionActiva, null);
         ProyeccionActiva = 2;
 
+        var indice_inicial = 0;
         proyecion_3.forEach(function (entry) {
             var Punto = new google.maps.LatLng(parseFloat(entry.latitud), parseFloat(entry.longitud));
             AñadirMarcadorMapa(Punto, MapaCanvas);
+            Proyecciones[2].MarcadoresCollecion[Proyecciones[2].MarcadoresCollecion.length - 1].Horas = JSON.parse($("#horas_3").val()).slice(indice_inicial, indice_inicial + 24).map(function (e) { return e.potencia })
+            indice_inicial = indice_inicial + 24;
         });       
         SegundaProyeccionActivada = true;
         TerceraProyeccionActivada = true;
         $("#VerProyeccion1").trigger("click");
+
+
+
     }
 
 }
